@@ -2,14 +2,15 @@ package database;
 
 import model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class UserDAO implements DAO<User> {
     private final ArrayList<User> data = new ArrayList<User>();
+
+    public static UserDAO getInstance() {
+        return new UserDAO();
+    }
 
     public ArrayList selectAll() {
         ArrayList<User> res = new ArrayList<User>();
@@ -38,8 +39,8 @@ public class UserDAO implements DAO<User> {
         return res;
     }
 
-    public ArrayList selectById(User o) {
-        ArrayList<User> res = new ArrayList<User>();
+    public User selectById(User o) {
+        User res = null;
         try {
             Connection connection = JDBCUtil.getConnection();
             String sql = "SELECT * FROM user WHERE id_user=?";
@@ -54,9 +55,11 @@ public class UserDAO implements DAO<User> {
                 String email = resultSet.getString("email");
                 String tel = resultSet.getString("tel");
                 String pass = resultSet.getString("pass");
+                String verificationCode = resultSet.getString("verification_code");
+                Timestamp timeValid = resultSet.getTimestamp("time_valid");
+                boolean verified = resultSet.getBoolean("verified");
 
-                User user = new User(id_user, userName, email, tel, pass);
-                res.add(user);
+                res = new User(id_user, userName, email, tel, pass, verificationCode, timeValid, verified);
                 break;
             }
             JDBCUtil.disconection(connection);
@@ -178,6 +181,29 @@ public class UserDAO implements DAO<User> {
         return res;
     }
 
+    public int updateVerifyInfo(User o) {
+        int res = 0;
+        try {
+            Connection connection = JDBCUtil.getConnection();
+            String sql = "UPDATE user " +
+                    " SET " +
+                    " verification_code=?" +
+                    ", time_valid=?" +
+                    ", verified=?" +
+                    " WHERE id_user=?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, o.getVerificationCode());
+            st.setTimestamp(2, o.getTimeValid());
+            st.setBoolean(3, o.isVerified());
+            st.setString(4, o.getId_User());
+            System.out.println(sql);
+            res = st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
     public boolean changePass(User o) {
         int res = 0;
         try {
@@ -194,7 +220,7 @@ public class UserDAO implements DAO<User> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return res>0;
+        return res > 0;
     }
 
     public int updateAll(ArrayList<User> arrayList) {

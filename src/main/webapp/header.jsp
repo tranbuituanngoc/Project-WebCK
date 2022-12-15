@@ -19,7 +19,7 @@
                                     <span class="fa fa-phone"></span> 0123456789
                                 </div>
                                 <div class="aa-email hidden-xs">
-                                    <span class="fa fa-envelope-o"></span> nlu@gmail.com
+                                    <span class="fa fa-envelope-o"></span> wealthuring@gmail.com
                                 </div>
                             </div>
                         </div>
