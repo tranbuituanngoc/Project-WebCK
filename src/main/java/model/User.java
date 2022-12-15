@@ -1,11 +1,16 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class User {
     private String id_User;
     private String userName;
     private String email;
     private String tel;
     private String pass;
+    private String verificationCode;
+    private Timestamp timeValid;
+    private boolean verified;
 
     public User() {
     }
@@ -16,6 +21,17 @@ public class User {
         this.email = email;
         this.tel = tel;
         this.pass = pass;
+    }
+
+    public User(String id_User, String userName, String email, String tel, String pass, String verificationCode, Timestamp timeValid, boolean verified) {
+        this.id_User = id_User;
+        this.userName = userName;
+        this.email = email;
+        this.tel = tel;
+        this.pass = pass;
+        this.verificationCode = verificationCode;
+        this.timeValid = timeValid;
+        this.verified = verified;
     }
 
     public void setId_User(String id_User) {
@@ -56,5 +72,29 @@ public class User {
 
     public String getPass() {
         return pass;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public Timestamp getTimeValid() {
+        return timeValid;
+    }
+
+    public void setTimeValid(Timestamp timeValid) {
+        this.timeValid = timeValid;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

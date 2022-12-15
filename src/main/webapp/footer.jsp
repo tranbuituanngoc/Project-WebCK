@@ -31,7 +31,7 @@
             </div>
             <div>
                 <i class="fa fa-envelope"></i>
-                <p><a href="mailto:NLUt@GMAIL.COM">NLU@GMAIL.COM</a></p>
+                <p><a href="mailto:wealthuring@gmail.com">WEALTHURING@GMAIL.COM</a></p>
             </div>
 
         </div>

@@ -1,11 +1,13 @@
 package database;
 
+import model.User;
+
 import java.util.ArrayList;
 
 public interface DAO<T> {
     ArrayList<T> selectAll();
 
-    ArrayList<T> selectById(T o);
+    User selectById(T o);
 
     int insert  (T o);
 

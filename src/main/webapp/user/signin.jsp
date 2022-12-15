@@ -63,6 +63,9 @@
                                         <%
                                             String error = request.getAttribute("error") + "";
                                             if (error.equals("null")) error = "";
+
+                                            String username = request.getAttribute("username") + "";
+                                            username = (username.equals("null") ? "" : username);
                                         %>
                                         <div style="color: #e31414;font-weight: bold;font-size: 12pt;" id="error">
                                             <%=error%>
@@ -74,7 +77,7 @@
                                 <input type="hidden" name="action" value="dang-nhap">
                                 <div class="aa-single-field">
                                     <label for="username">Tên đăng nhập: <span class="required">*</span></label>
-                                    <input type="text" required="required" aria-required="true" value=""
+                                    <input type="text" required="required" aria-required="true" value="<%=username%>"
                                            name="username">
                                 </div>
                                 <div class="aa-single-field">
