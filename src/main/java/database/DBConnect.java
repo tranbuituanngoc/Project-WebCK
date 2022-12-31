@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 
 public class DBConnect {
-    private String url = "jdbc:mysql://localhost:3306/properties";
+    private String url = "jdbc:mysql://localhost:3306/sanpham";
     private String user = "root";
     private String pass = "";
     Connection connection;
