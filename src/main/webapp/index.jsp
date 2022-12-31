@@ -75,7 +75,7 @@
 
             <!-- Top slider single slide -->
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-akari-city.html">
+                <a href="-detail-akari-city.html">
                     <img src="img/slider/overview%20(1).jpg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -84,7 +84,7 @@
                         <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quận Bình Tân, TP.HCM</p>
                         <span class="aa-top-slider-off">Thông Thường</span>
                         <p class="aa-top-slider-price">2,7 tỷ</p>
-                        <!-- <a href="properties-detail-akari-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
+                        <!-- <a href="-detail-akari-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
                     </div>
                 </a>
                 <!-- / Top slider content -->
@@ -92,7 +92,7 @@
             <!-- / Top slider single slide -->
             <!-- Top slider single slide -->
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-green-diamon.html">
+                <a href="-detail-green-diamon.html">
                     <img src="img/slider/overview%20(2).jpeg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -101,7 +101,7 @@
                         <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Đống Đa, Hà Nội</p>
                         <span class="aa-top-slider-off">Studio</span>
                         <p class="aa-top-slider-price">2,5 tỷ</p>
-                        <!-- <a href="properties-detail-green-diamon.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
+                        <!-- <a href="-detail-green-diamon.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
                     </div>
                 </a>
                 <!-- / Top slider content -->
@@ -109,7 +109,7 @@
             <!-- / Top slider single slide -->
             <!-- Top slider single slide -->
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-sunshine-city.html">
+                <a href="-detail-sunshine-city.html">
                     <img src="img/slider/overview%20(3).jpg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -118,7 +118,7 @@
                         <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Tây Hồ, Hà Nội</p>
                         <span class="aa-top-slider-off">Studio</span>
                         <p class="aa-top-slider-price">2,5 tỷ</p>
-                        <!-- <a href="properties-detail-sunshine-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
+                        <!-- <a href="-detail-sunshine-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
                     </div>
                 </a>
                 <!-- / Top slider content -->
@@ -144,7 +144,7 @@
             <!-- / Top slider single slide -->
             <!-- Top slider single slide -->
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-mizuki.html">
+                <a href="-detail-mizuki.html">
                     <img src="img/slider/overview%20(5).jpg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -153,7 +153,7 @@
                         <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Đống Đa, Hà Nội</p>
                         <span class="aa-top-slider-off">Thông Tầng</span>
                         <p class="aa-top-slider-price">3,2 tỷ</p>
-                        <!-- <a href="properties-detail-mizuki.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
+                        <!-- <a href="-detail-mizuki.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
                     </div>
                 </a>
                 <!-- / Top slider content -->
@@ -162,7 +162,7 @@
             <!-- Top slider single slide -->
 
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-matrix-one.html">
+                <a href="-detail-matrix-one.html">
                     <img src="img/slider/overview%20(6).jpg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -171,13 +171,13 @@
                         <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Hoàng Mai, Hà Nội</p>
                         <span class="aa-top-slider-off">Văn Phòng</span>
                         <p class="aa-top-slider-price">3 tỷ</p>
-                        <!-- <a href="properties-detail-matrix-one.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
+                        <!-- <a href="-detail-matrix-one.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
                     </div>
                 </a>
                 <!-- / Top slider content -->
             </div>
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-eco.html">
+                <a href="-detail-eco.html">
                     <img src="img/slider/overview%20(7).jpg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -192,7 +192,7 @@
                 <!-- / Top slider content -->
             </div>
             <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-lavita.html">
+                <a href="-detail-lavita.html">
                     <img src="img/slider/overview%20(8).jpg" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
@@ -802,7 +802,7 @@
                     <h3>Tìm Cho Mình Một Căn Hộ Ưng Ý</h3>
                     <p>Wealthuring sàn buôn bán bất động sản và căn hộ uy tính hàng đầu Việt Nam hiện nay, với các mức
                         giá ưu đãi và dịch vụ chăm sóc khách hàng tốt nhất.</p>
-                    <a href="properties.html" class="aa-view-btn">Xem Chi Tiết</a>
+                    <a href="properties.jsp" class="aa-view-btn">Xem Chi Tiết</a>
                 </div>
             </div>
         </div>
@@ -1061,7 +1061,7 @@
 <script>
     document.getElementById("index").classList.add('active');
     // document.getElementById("contact").classList.add('active');
-    // document.getElementById("properties").classList.add('active');
+    // document.getElementById("").classList.add('active');
     // document.getElementById("blog").classList.add('active');
     // document.getElementById("gellery").classList.add('active');
 </script>
