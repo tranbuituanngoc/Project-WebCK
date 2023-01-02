@@ -28,8 +28,9 @@ public class UserDAO implements DAO<User> {
                 String email = resultSet.getString("email");
                 String tel = resultSet.getString("tel");
                 String pass = resultSet.getString("pass");
+                int role = resultSet.getInt("role");
 
-                User user = new User(id_user, userName, email, tel, pass);
+                User user = new User(id_user, userName, email, tel, pass, role);
                 res.add(user);
             }
             JDBCUtil.disconection(connection);
@@ -69,6 +70,36 @@ public class UserDAO implements DAO<User> {
         return res;
     }
 
+    public User selectByUnameNEmail(User o) {
+        User res = null;
+        try {
+            Connection connection = JDBCUtil.getConnection();
+            String sql = "SELECT * FROM user WHERE username=? AND email=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, o.getUserName());
+            statement.setString(2, o.getEmail());
+            System.out.println(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String id_user = resultSet.getString("id_user");
+                String userName = resultSet.getString("userName");
+                String email = resultSet.getString("email");
+                String tel = resultSet.getString("tel");
+                String pass = resultSet.getString("pass");
+                String verificationCode = resultSet.getString("verification_code");
+                Timestamp timeValid = resultSet.getTimestamp("time_valid");
+                boolean verified = resultSet.getBoolean("verified");
+
+                res = new User(id_user, userName, email, tel, pass, verificationCode, timeValid, verified);
+                break;
+            }
+            JDBCUtil.disconection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
 
     public User selectByUserNameAndPass(User o) {
         User res = null;
@@ -87,8 +118,9 @@ public class UserDAO implements DAO<User> {
                 String email = resultSet.getString("email");
                 String tel = resultSet.getString("tel");
                 String pass = resultSet.getString("pass");
+                int role = resultSet.getInt("role");
 
-                res = new User(id_user, userName, email, tel, pass);
+                res = new User(id_user, userName, email, tel, pass, role);
                 break;
             }
             JDBCUtil.disconection(connection);
@@ -102,13 +134,14 @@ public class UserDAO implements DAO<User> {
         int res = 0;
         try {
             Connection connection = JDBCUtil.getConnection();
-            String sql = "INSERT INTO user (id_user,userName,email,tel,pass) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO user (id_user,userName,email,tel,pass,role) VALUES (?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, o.getId_User());
             statement.setString(2, o.getUserName());
             statement.setString(3, o.getEmail());
             statement.setString(4, o.getTel());
             statement.setString(5, o.getPass());
+            statement.setInt(6, o.getRole());
             System.out.println(sql);
             res = statement.executeUpdate();
             JDBCUtil.disconection(connection);
@@ -167,12 +200,31 @@ public class UserDAO implements DAO<User> {
                     " pass=?" +
                     ", tel=?" +
                     ", email=?" +
-                    " WHERE username=?";
+                    " WHERE id_user=?";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, o.getPass());
             st.setString(2, o.getTel());
             st.setString(3, o.getEmail());
-            st.setString(4, o.getUserName());
+            st.setString(4, o.getId_User());
+            System.out.println(sql);
+            res = st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
+    public int updateRole(User o) {
+        int res = 0;
+        try {
+            Connection connection = JDBCUtil.getConnection();
+            String sql = "UPDATE User " +
+                    " SET " +
+                    " role=?" +
+                    " WHERE id_user=?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, o.getRole());
+            st.setString(2, o.getId_User());
             System.out.println(sql);
             res = st.executeUpdate();
         } catch (SQLException e) {
@@ -263,7 +315,7 @@ public class UserDAO implements DAO<User> {
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        User u = new User("u1101", "nva", "abc@gmail.com", "0123456", "123");
+        User u = new User("u1101", "nva", "abc@gmail.com", "0123456", "123",1);
         dao.delete(u);
     }
 }

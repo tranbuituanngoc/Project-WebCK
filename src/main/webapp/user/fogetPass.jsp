@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wealthuring | Đổi Mật Khẩu</title>
+    <title>Wealthuring | Quên Mật Khẩu</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
@@ -46,13 +46,6 @@
 </head>
 
 <body>
-<%
-    String url = "";
-    User user = (User) session.getAttribute("user");
-    if (user == null) {
-        response.sendRedirect(url + "/401.jsp");
-    }
-%>
 <section id="aa-signin">
     <div class="container">
         <div class="row">
@@ -66,7 +59,7 @@
                                                                                              style="max-width: 100%; height: auto; padding-bottom: 10px;border-bottom: 1px solid #404040 ;"></a>
                                 <div class="row">
                                     <div class="title">
-                                        <span><h2>Đổi mật khẩu</h2></span>
+                                        <span><h2>Quên mật khẩu</h2></span>
                                         <!-- <span><h5>để có những trải nghiệm tốt nhất</h5></span> -->
                                         <%
                                             String error = request.getAttribute("error") + "";
@@ -79,25 +72,18 @@
                                 </div>
                             </div>
                             <form class="changePassForm" action="../nguoi-dung" method="post" id="changePassForm">
-                                <input type="hidden" name="action" value="doi-mat-khau">
+                                <input type="hidden" name="action" value="quen-mat-khau">
                                 <div class="aa-single-field">
-                                    <label for="oldPassword">Mật khẩu cũ: <span class="required">*</span></label>
-                                    <input type="password" name="oldPassword" id="oldPassword">
+                                    <label for="username">Tên đăng nhập: <span class="required">*</span></label>
+                                    <input type="text" name="username" id="username">
                                 </div>
                                 <div class="aa-single-field">
-                                    <label for="newPassword">Mật khẩu mới: <span class="required">*</span></label>
-                                    <input type="password" name="newPassword" id="newPassword">
-                                </div>
-                                <div class="aa-single-field">
-                                    <label for="comNewPass">Nhập lại mật khẩu mới: <span
-                                            class="required">*</span></label>
-                                    <input type="password" name="comNewPass" id="comNewPass">
+                                    <label for="email">Email: <span class="required">*</span></label>
+                                    <input type="email" name="email" id="email">
                                 </div>
                                 <div class="aa-single-submit">
-                                    <input type="submit" value="Đổi Mật Khẩu" class="aa-browse-btn" name="submit"
-                                           onclick="signIn()">
-                                    <p>Bạn chưa có tài khoản? <a href="signup.jsp" style="color: #59abe3 ;">Tạo tài
-                                        khoản tại đây!</a></p>
+                                    <input type="submit" value="Xác Nhận" class="aa-browse-btn" name="submit">
+                                    <p>Bạn đã nhớ mật khẩu? <a href="signin.jsp" style="color: #59abe3 ;">Đăng nhập tại đây!</a></p>
                                 </div>
                             </form>
                         </div>

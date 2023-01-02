@@ -56,7 +56,7 @@ public class Email {
     }
 
     public static void main(String[] args) {
-        User user = new User("12345", "abcdef", "tranbuituanngoc@gmail.com", "01234567", "1234");
+        User user = new User("12345", "abcdef", "tranbuituanngoc@gmail.com", "01234567", "1234",1);
         String link = "http://localhost:8080/nguoi-dung/xac-thuc?id_User=" + user.getId_User() + "&verificationCode=" + user.getVerificationCode();
         String content = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" style=\"font-family:arial, 'helvetica neue', helvetica, sans-serif\">\n" +

@@ -98,12 +98,12 @@
                                 <label for="tel">Số điện thoại: <span class="required">*</span></label>
                                 <input type="tel" required="required" aria-required="true" id="tel" value="<%=tel%>"
                                        name="tel"
-                                       placeholder="XX-XXXX-XXXX">
+                                       onkeyup="regexForTel()">
                                 <div id="error_tel"></div>
                             </div>
                             <div class="aa-single-field">
                                 <label for="password">Mật khẩu: <span class="required">*</span></label>
-                                <input type="password" name="password" id="pass">
+                                <input type="password" name="password" id="pass" onkeyup="regexForPass()">
                                 <div id="error_pass"></div>
                                 <input type="checkbox" onclick="showPass()"> Hiển thị mật khẩu
                             </div>

@@ -69,7 +69,7 @@ function signIn() {
     if (error == 0) {
         contactform = document.getElementById('contactform');
         contactform.submit;
-    } else
+    }
 }
 
 
@@ -125,17 +125,43 @@ function signUp() {
     if (error == 0) {
         signupform = document.getElementById('signupform');
         signupform.submit;
-    } else
+    }
 }
 
 
-function checkComPass(){
-        // p=document.getElementById("pass").value;
-        // cpass=document.getElementById("comPass").value;
-        // if(p!=cpass){
-        //     document.getElementById("error_compass").innerHTML= '<span class="required">Mật khẩu không khớp</span>';
-        // }else {
-        //     document.getElementById("error_compass").innerHTML= '';
-        // }
-    console.log("123");
+function checkComPass() {
+    pass = document.getElementById('pass').value;
+    compass = document.getElementById('comPass').value;
+    error_compass = document.getElementById('error_compass');
+    if (pass != compass) {
+        error_compass.innerHTML = '<span class="required">Mật khẩu nhập lại chưa đúng</span>';
+    } else {
+        error_compass.innerHTML = ''
+    }
+
 }
+
+//set regex pattern for tel
+function regexForTel() {
+    tel = document.getElementById('tel').value;
+    error_tel = document.getElementById('error_tel');
+    var regex = new RegExp("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
+    if (!(regex.test(tel))) {
+        error_tel.innerHTML = '<span class="required">Số điện thoại không hợp lệ.</span>';
+    } else {
+        error_tel.innerHTML = ''
+    }
+}
+
+//set regex pattern for passwords
+function regexForPass() {
+    pass = document.getElementById('pass').value;
+    var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z\d]).{8,}$/gm;
+    error_password = document.getElementById('error_pass');
+    if (!(pass.match(regex))) {
+        error_password.innerHTML = '<span class="required">Mật khẩu phải chứa ít nhất 8 ký tự và phải bao gồm 1 kí tự in hoa, 1 kí tự in thường và 1 chữ số.</span>';
+    } else {
+        error_password.innerHTML = ''
+    }
+}
+

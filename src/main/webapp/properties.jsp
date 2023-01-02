@@ -166,6 +166,8 @@
                                                 Tiết</a>
                                         </div>
                                     </div>
+                                    //ngay chỗ này
+
                                     <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
                                 </article>
                                 <%}%>
@@ -208,6 +210,7 @@
                                 <input type="text" placeholder="Nhập dự án mà bạn muốn tìm kiếm">
                             </div>
                             <div class="aa-single-advance-search">
+
                                 <select id="" name="">
                                     <option selected="" value="0">Khu Vực</option>
                                     <option value="1">Hà Nội</option>
@@ -225,7 +228,8 @@
                                 </select>
                             </div>
                             <div class="aa-single-advance-search">
-                                <select id="" name="">
+                                <select name="">
+
                                     <option selected="" value="0">Loại Hình</option>
                                     <option value="1">Thông Tầng</option>
                                     <option value="2">Áp Mái</option>
@@ -341,6 +345,13 @@
 <script src="js/script.js"></script>
 <!-- icon -->
 <script src="https://kit.fontawesome.com/9212eb0180.js" crossorigin="anonymous"></script>
+<script>
+    // document.getElementById("index").classList.add('active');
+    // document.getElementById("contact").classList.add('active');
+    document.getElementById("properties").classList.add('active');
+    // document.getElementById("blog").classList.add('active');
+    // document.getElementById("gellery").classList.add('active');
+</script>
 
 
 </body>

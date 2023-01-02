@@ -1,10 +1,11 @@
 package database;
+
+import com.mysql.jdbc.Driver;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Driver;
 
 public class JDBCUtil {
     public static Connection getConnection() {
@@ -16,7 +17,7 @@ public class JDBCUtil {
             DriverManager.registerDriver(driver);
 
             //link
-            String urlString = "jdbc:mysql://localhost:3306/bancanho";
+            String urlString = "jdbc:mysql://localhost:3306/testbancanho";
             //tên database
             String usernameString = "root";
             //mật khẩu database

@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="aa-single-field">
                                     <label>
-                                        <input type="checkbox"> Nhớ mật khẩu
+                                       <a href="fogetPass.jsp" style="font-weight: 500;float: right;color: #59abe3;">Quên mật khẩu?</a>
                                     </label>
                                 </div>
                                 <div class="aa-single-submit">
