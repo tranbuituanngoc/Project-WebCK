@@ -101,7 +101,8 @@
                             </ul>
                         </li> -->
                         <li id="gellery"><a href="gallery.jsp">TỔNG QUAN</a></li>
-                        <li id="blog"><a href="blog-archive.jsp">TIN TỨC</a></li>
+
+                        <li id="blog"><a href="blog_archive.jsp">TIN TỨC</a></li>
                         <!-- <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">BLOG <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">

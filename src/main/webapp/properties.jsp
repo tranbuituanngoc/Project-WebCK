@@ -167,6 +167,7 @@
                                         </div>
                                     </div>
                                     //ngay chỗ này
+
                                     <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
                                 </article>
                                 <%}%>
@@ -209,7 +210,8 @@
                                 <input type="text" placeholder="Nhập dự án mà bạn muốn tìm kiếm">
                             </div>
                             <div class="aa-single-advance-search">
-                                <select name="">
+
+                                <select id="" name="">
                                     <option selected="" value="0">Khu Vực</option>
                                     <option value="1">Hà Nội</option>
                                     <option value="2">Hồ Chí Minh</option>
@@ -227,6 +229,7 @@
                             </div>
                             <div class="aa-single-advance-search">
                                 <select name="">
+
                                     <option selected="" value="0">Loại Hình</option>
                                     <option value="1">Thông Tầng</option>
                                     <option value="2">Áp Mái</option>
@@ -349,6 +352,7 @@
     // document.getElementById("blog").classList.add('active');
     // document.getElementById("gellery").classList.add('active');
 </script>
+
 
 </body>
 
