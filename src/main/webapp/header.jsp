@@ -38,13 +38,13 @@
                                 <div class="wel">
                                     <span>Xin chào </span> <span class="dropdown"><a class="dropdown-toggle"
                                                                                      data-toggle="dropdown"
-                                                                                     href="properties.html"> <b><%=user.getUserName()%></b> <span
+                                                                                     href="properties.jsp"> <b><%=user.getUserName()%></b> <span
                                         class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="properties.html">PROPERTIES</a></li>
-                                            <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>
-                                            <li><a href="properties.html">PROPERTIES</a></li>
-                                            <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>
+                                            <li><a href="properties.jsp">PROPERTIES</a></li>
+                                            <li><a href="propertie-detail.jsp">PROPERTIES DETAIL</a></li>
+                                            <li><a href="properties.jsp">PROPERTIES</a></li>
+                                            <li><a href="propertie-detail.jsp">PROPERTIES DETAIL</a></li>
                                             <li><a href="user/changePass.jsp">Đổi mật khẩu</a></li>
                                             <li><a href="nguoi-dung?action=dang-xuat">Đăng xuất</a></li>
                                         </ul>
@@ -92,7 +92,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
                         <li id="index"><a href="index.jsp">TRANG CHỦ</a></li>
-                        <li id="properties"><a href="properties.html">DỰ ÁN </a></li>
+                        <li id="properties"><a href="properties.jsp">DỰ ÁN </a></li>
                         <!-- <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -100,8 +100,8 @@
                                 <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>
                             </ul>
                         </li> -->
-                        <li id="gellery"><a href="gallery.html">TỔNG QUAN</a></li>
-                        <li id="blog"><a href="blog-archive.html">TIN TỨC</a></li>
+                        <li id="gellery"><a href="gallery.jsp">TỔNG QUAN</a></li>
+                        <li id="blog"><a href="blog-archive.jsp">TIN TỨC</a></li>
                         <!-- <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">BLOG <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">

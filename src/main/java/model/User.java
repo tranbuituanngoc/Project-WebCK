@@ -11,16 +11,30 @@ public class User {
     private String verificationCode;
     private Timestamp timeValid;
     private boolean verified;
+    private int role;
 
     public User() {
     }
 
-    public User(String id_User, String userName, String email, String tel, String pass) {
+    public User(String id_User, String userName, String email, String tel, String pass, String verificationCode, Timestamp timeValid, boolean verified, int role) {
         this.id_User = id_User;
         this.userName = userName;
         this.email = email;
         this.tel = tel;
         this.pass = pass;
+        this.verificationCode = verificationCode;
+        this.timeValid = timeValid;
+        this.verified = verified;
+        this.role = role;
+    }
+
+    public User(String id_User, String userName, String email, String tel, String pass, int role) {
+        this.id_User = id_User;
+        this.userName = userName;
+        this.email = email;
+        this.tel = tel;
+        this.pass = pass;
+        this.role = role;
     }
 
     public User(String id_User, String userName, String email, String tel, String pass, String verificationCode, Timestamp timeValid, boolean verified) {
@@ -96,5 +110,13 @@ public class User {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }
