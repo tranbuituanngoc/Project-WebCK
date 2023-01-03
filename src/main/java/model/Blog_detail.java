@@ -7,16 +7,14 @@ public class Blog_detail {
     String subtitle;
     String content;
     String img_1;
-    String img_2;
 
-    public Blog_detail(String id_ctblog, String id_blog, String title, String subtitle, String content, String img_1, String img_2) {
+    public Blog_detail(String id_ctblog, String id_blog, String title, String subtitle, String content, String img_1) {
         this.id_ctblog = id_ctblog;
         this.id_blog = id_blog;
         this.title = title;
         this.subtitle = subtitle;
         this.content = content;
         this.img_1 = img_1;
-        this.img_2 = img_2;
     }
 
     public Blog_detail() {
@@ -71,11 +69,4 @@ public class Blog_detail {
         this.img_1 = img_1;
     }
 
-    public String getImg_2() {
-        return img_2;
-    }
-
-    public void setImg_2(String img_2) {
-        this.img_2 = img_2;
-    }
 }

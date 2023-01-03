@@ -107,7 +107,7 @@
                                             </figure>
                                             <div class="aa-blog-single-content">
                                                 <h4><a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><%= b.getTitle() %></a></h4>
-                                                <p><%= b.getSubTitle()%></p>
+                                                <p><%= b.getSubtitle()%></p>
                                             </div>
                                         </article>
                                     </div>

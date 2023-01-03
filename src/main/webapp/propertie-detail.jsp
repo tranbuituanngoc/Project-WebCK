@@ -114,13 +114,24 @@
                                 <li><%=p.getSoPhong().getNum_kitchen()%> Nhà Bếp</li>
                                 <li><%=p.getSoPhong().getNum_living()%> Phòng Khách</li>
                             </ul>
-                            <h4>Tiện Ích Của Akari City</h4>
-                            <ul>
-                                <li>Hồ Bơi</li>
-                                <li>Khu Vui Chơi Trẻ Em</li>
-                                <li>Phòng Tập Gym</li>
-                                <li>Khu Picnic</li>
-                            </ul>
+                            <h4>Tiện Ích Của <%=p.getPropertie().getName()%>:</h4>
+<%--                            <ul>--%>
+<%--                                <% if (p.getService().isHoboi()) {%>--%>
+<%--                                <li>Hồ Bơi</li>--%>
+<%--                                <%}%>--%>
+<%--                                <% if (p.getService().isKhuvuichoi()) {%>--%>
+<%--                                <li>Khu Vui Chơi Trẻ Em</li>--%>
+<%--                                <%}%>--%>
+<%--                                <% if (p.getService().isGym()) {%>--%>
+<%--                                <li>Phòng Tập Gym</li>--%>
+<%--                                <%}%>--%>
+<%--                                <% if (p.getService().isPicnic()) {%>--%>
+<%--                                <li>Khu Picnic</li>--%>
+<%--                                <%}%>--%>
+<%--                                <% if (p.getService().isCongvien()) {%>--%>
+<%--                                <li>Công Viên</li>--%>
+<%--                                <%}%>--%>
+<%--                            </ul>--%>
                             <h4>Xem Bản Đồ</h4>
                             <iframe src="<%=p.getMap()%>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
