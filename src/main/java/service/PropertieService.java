@@ -35,7 +35,7 @@ public class PropertieService {
                 int area = rs.getInt("area");
                 String type = rs.getString("type");
 
-                Propertie propertie = new Propertie(idP, img, name, bPrice, ePrice, address, bestseller, soldout, area, type);
+                res = new Propertie(idP, img, name, bPrice, ePrice, address, bestseller, soldout, area, type);
                 break;
             }
             JDBCUtil.disconection(connection);

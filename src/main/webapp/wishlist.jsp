@@ -131,9 +131,7 @@
                                             </div>
                                         </div>
                                         <div class="aa-properties-detial">
-                                                <span class="aa-price">
-                                                    2,7 tỷ
-                                                </span>
+                                            <span class="aa-price"><%= p.getbPrice()%> - <%=p.getePrice()%> Tỷ</span>
                                             <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"
                                                class="aa-secondary-btn">Xem Chi
                                                 Tiết</a>

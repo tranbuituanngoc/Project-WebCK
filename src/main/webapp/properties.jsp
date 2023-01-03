@@ -181,26 +181,39 @@
                                             WishList w = new WishList();
                                             w.setId_user(user.getId_User());
                                             ArrayList<Propertie> list = wishListDAO.selectByUserId(w);
-                                            String icon = "";
-                                            for (Propertie propertie : list) {
+                                            if (list.size() > 0) {
+                                                for (Propertie propertie : list) {
                                     %>
                                     <form action="/du-an-quan-tam" method="post">
                                         <input type="hidden" name="action" value="them">
                                         <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                        <input type="hidden" name="url" value="<%=request.getRequestURI().toString()%>">
                                         <button style="background-color: transparent; border: none" class="btn"
                                                 type="submit">
-                                            <%
+                                                <%
                                                 if (p.getId_duan() == propertie.getId_duan()) {
                                             %>
                                             <i class="fa-regular fa-heart fa-solid"></i>
-                                            <%
+                                                <%
                                             } else {
                                             %>
                                             <i class="fa-regular fa-heart"></i>
-                                            <%
+                                                <%
                                                 }
                                             %>
-                                        </button>
+                                    </form>
+                                    <%
+                                        }
+                                    } else {
+                                    %>
+                                    <form action="/du-an-quan-tam" method="post">
+                                        <input type="hidden" name="action" value="them">
+                                        <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                        <input type="hidden" name="url" value="<%=request.getRequestURI().toString()%>">
+                                        <button style="background-color: transparent; border: none" class="btn"
+                                                type="submit">
+                                            <i class="fa-regular fa-heart"></i>
+
                                     </form>
                                     <%
                                             }
@@ -220,16 +233,84 @@
                                                                                                      aria-label="Previous">&laquo;</a>
                                 </li>
                                 <%
-                                    int a, b;
-                                    int limit = list1.size() / 20;
-                                    if (limit * 20 < list1.size()) {
-                                        limit += 1;
+                                    int
+                                            a,
+                                            b;
+                                    int
+                                            limit
+                                            =
+                                            list1
+                                                    .
+                                                    size
+                                                            (
+                                                            )
+                                                    /
+                                                    20;
+                                    if
+                                    (
+                                            limit
+                                                    *
+                                                    20
+                                                    <
+                                                    list1
+                                                            .
+                                                            size
+                                                                    (
+                                                                    )
+                                    ) {
+                                        limit
+                                                +=
+                                                1
+                                        ;
                                     }
-                                    for (int i = 1; i <= limit; i++) {
-                                        a = (i - 1) * 20;
-                                        b = i * 20;
-                                        if (b > list1.size()) {
-                                            b = list1.size();
+                                    for
+                                    (
+                                            int
+                                            i
+                                            =
+                                            1
+                                            ;
+                                            i
+                                                    <=
+                                                    limit
+                                            ;
+                                            i
+                                                    ++
+                                    ) {
+                                        a
+                                                =
+                                                (
+                                                        i
+                                                                -
+                                                                1
+                                                )
+                                                        *
+                                                        20
+                                        ;
+                                        b
+                                                =
+                                                i
+                                                        *
+                                                        20
+                                        ;
+                                        if
+                                        (
+                                                b
+                                                        >
+                                                        list1
+                                                                .
+                                                                size
+                                                                        (
+                                                                        )
+                                        ) {
+                                            b
+                                                    =
+                                                    list1
+                                                            .
+                                                            size
+                                                                    (
+                                                                    )
+                                            ;
                                         }
                                 %>
                                 <li class="page-item current-page active"><a class="page-link"

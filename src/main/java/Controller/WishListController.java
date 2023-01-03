@@ -5,7 +5,6 @@ import model.Propertie;
 import model.User;
 import model.WishList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,36 +26,16 @@ public class WishListController extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equals("them")) {
             addToWishList(request, response);
-        } else if (action.equals("xem")) {
-            showWishList(request, response);
         }
     }
 
-    protected void showWishList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ArrayList<Propertie> list;
-        WishListDAO wishListDAO = new WishListDAO();
-        WishList w = new WishList();
-        w.setId_user(user.getId_User());
-        String msg="";
-        if (user == null) {
-            response.sendRedirect("/error/401.jsp");
-        } else {
-            list = wishListDAO.selectByUserId(w);
-            if (list.size() > 0) {
-                request.setAttribute("listProp", list);
-            }else{
-                msg="Không tìm thấy dự án đang được quan tâm!";
-            }
-        }
-        request.setAttribute("msg",msg);
-    }
+
 
     protected void addToWishList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String idS = request.getParameter("id_duan");
+        String url= request.getParameter("url");
         int id_duan = Integer.parseInt(idS);
         Propertie propertie = new Propertie();
         propertie.setId_duan(id_duan);
@@ -86,7 +65,10 @@ public class WishListController extends HttpServlet {
                 wishListDAO.insert(wishList);
             }
         }
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/properties.jsp");
-        requestDispatcher.forward(request, response);
+        url=request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+url;
+        System.out.println(url);
+//        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/"+url);
+//        requestDispatcher.forward(request, response);
+        response.sendRedirect(url);
     }
 }
