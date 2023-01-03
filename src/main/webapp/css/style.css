@@ -1430,7 +1430,7 @@
 ====================*/
         
         #aa-latest-blog {
-            display: inline;
+            /*display: inline;*/
             float: left;
             padding: 100px 0;
             width: 100%;
@@ -1443,7 +1443,7 @@
         }
         
         #aa-latest-blog .aa-latest-blog-area .aa-latest-blog-content {
-            display: inline;
+            display: flex;
             float: left;
             margin-top: 50px;
             width: 100%;
@@ -1674,6 +1674,40 @@
             float: left;
             width: 100%;
         }
+
+        #aa-properties .aa-properties-content .aa-type {
+            display: flex;
+        }
+
+        #aa-properties .aa-properties-content .aa-quantity {
+            display: flex;
+        }
+
+        #aa-properties .aa-properties-content .aa-type .aa-type-flour {
+            margin-top: 22px;
+            margin-left: 50px;
+        }
+
+        #aa-properties .aa-properties-content .aa-quantity .aa-type-flour {
+            margin-top: 4px;
+            display: flex;
+            margin-left: 10px;
+        }
+
+        #aa-properties .aa-properties-content .aa-type .aa-type-flour a {
+            cursor: pointer;
+            padding: 5px;
+            margin: 10px;
+            color: black;
+            border: 1px solid #59abe3;
+        }
+
+        #aa-properties .aa-properties-content .aa-quantity .aa-type-flour h5 {
+            padding: 5px;
+            margin: 16px;
+            color: black;
+            border: 1px solid #59abe3;
+        }
         
         #aa-properties .aa-properties-content .aa-properties-content-head {
             border: 1px solid #ddd;
@@ -1785,6 +1819,7 @@
             display: inline;
             float: left;
             width: 100%;
+            text-align: center;
         }
         
         #aa-properties .aa-properties-content .aa-properties-content-bottom .pagination {
