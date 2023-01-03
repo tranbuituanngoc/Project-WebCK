@@ -4,6 +4,7 @@ import database.DBConnect;
 import database.JDBCUtil;
 import model.Propertie;
 import model.Properties_detail;
+import model.Service;
 import model.SoPhong;
 
 import java.sql.*;
@@ -157,7 +158,6 @@ public class PropertieService {
                 int num_kitchen = rs.getInt("num_kitchen");
                 SoPhong soPhong = new SoPhong(idSophong, num_bed, num_bath, num_living, num_kitchen);
 
-
                 int idP = rs.getInt("id_duan");
                 String img = rs.getString("img");
                 String name = rs.getString("name");
@@ -169,9 +169,19 @@ public class PropertieService {
                 int area = rs.getInt("area");
                 String type = rs.getString("type");
 
+//                int idService = rs.getInt("id_service");
+//                int id_ctda = rs.getInt("id_ctds");
+//                boolean hoboi = rs.getBoolean("hoboi");
+//                boolean khuvuichoi = rs.getBoolean("khuvuivhoi");
+//                boolean picnic = rs.getBoolean("picnic");
+//                boolean gym = rs.getBoolean("gym");
+//                boolean congvien = rs.getBoolean("congvien");
+//                Service service = new Service(idService, id_ctda, hoboi, khuvuichoi, picnic, gym, congvien);
+
                 Propertie propertie = new Propertie(idP, img, name, bPrice, ePrice, address, bestseller, soldout, area, type);
                 Properties_detail p = new Properties_detail(idD, propertie, map, soPhong);
                 list.add(p);
+
             }
             JDBCUtil.disconection(connection);
         } catch (SQLException e) {
@@ -186,7 +196,7 @@ public class PropertieService {
         try {
             Statement statement = DBConnect.getInstall().get();
             if (statement != null) {
-                ResultSet rs = statement.executeQuery("select * from properties ORDER BY price DESC");
+                ResultSet rs = statement.executeQuery("select * from properties ORDER BY beginPrice DESC, endPrice DESC");
                 while (rs.next()) {
                     Propertie p = new Propertie();
                     list.add(new Propertie(rs.getInt("id_duan"), rs.getString("img"), rs.getString("name"), rs.getDouble("beginPrice"), rs.getDouble("endPrice"), rs.getString("address"), rs.getBoolean("bestseller"), rs.getBoolean("soldout"), rs.getInt("area"), rs.getString("type")));
@@ -204,7 +214,7 @@ public class PropertieService {
         try {
             Statement statement = DBConnect.getInstall().get();
             if (statement != null) {
-                ResultSet rs = statement.executeQuery("select * from properties ORDER BY price ASC");
+                ResultSet rs = statement.executeQuery("select * from properties ORDER BY beginPrice ASC, endPrice DESC");
                 while (rs.next()) {
                     Propertie p = new Propertie();
                     list.add(new Propertie(rs.getInt("id_duan"), rs.getString("img"), rs.getString("name"), rs.getDouble("beginPrice"), rs.getDouble("endPrice"), rs.getString("address"), rs.getBoolean("bestseller"), rs.getBoolean("soldout"), rs.getInt("area"), rs.getString("type")));

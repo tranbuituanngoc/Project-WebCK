@@ -1,4 +1,10 @@
 <%@ page import="model.User" %>
+<%@ page import="service.PropertieService" %>
+<%@ page import="model.Propertie" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Blog" %>
+<%@ page import="model.Blog_detail" %>
+<%@ page import="service.BlogService" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -27,7 +33,7 @@
 
     <!-- Main style sheet -->
     <%
-        String url=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     %>
     <link rel="stylesheet" href="<%=url%>/css/style.css">
 
@@ -43,12 +49,12 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<%--    <style>--%>
-<%--        #aa-header .aa-header-area .aa-header-right .wel,--%>
-<%--        #aa-header .aa-header-area .aa-header-right .wel a.dropdown-toggle {--%>
-<%--            color: #fff;--%>
-<%--        }--%>
-<%--    </style>--%>
+    <%--    <style>--%>
+    <%--        #aa-header .aa-header-area .aa-header-right .wel,--%>
+    <%--        #aa-header .aa-header-area .aa-header-right .wel a.dropdown-toggle {--%>
+    <%--            color: #fff;--%>
+    <%--        }--%>
+    <%--    </style>--%>
 </head>
 
 <body class="aa-price-range">
@@ -61,182 +67,37 @@
 <!-- END SCROLL TOP BUTTON -->
 
 <%--<!-- Start header and menu section -->--%>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <%--<!-- End header and menu section -->--%>
 
-
-
+<%
+    PropertieService pds = new PropertieService();
+    List<Propertie> list1 = pds.getListBestSeller();
+%>
 <!-- Start slider  -->
 <section id="aa-slider">
     <div class="aa-slider-area">
 
         <!-- Top slider -->
         <div class="aa-top-slider">
-
+            <% for (Propertie p : list1) {%>
             <!-- Top slider single slide -->
             <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-akari-city.html">
-                    <img src="img/slider/overview%20(1).jpg" alt="img">
+                <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>">
+                    <img src="<%=p.getImg()%>" alt="img">
                     <!-- Top slider content -->
                     <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Akari City</span>
-                        <h2 class="aa-top-slider-title">35800m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quận Bình Tân, TP.HCM</p>
-                        <span class="aa-top-slider-off">Thông Thường</span>
-                        <p class="aa-top-slider-price">2,7 tỷ</p>
+                        <span class="aa-top-slider-catg"><%=p.getName()%></span>
+                        <h2 class="aa-top-slider-title"><%=p.getArea()%>m<sup>2</sup></h2>
+                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i><%=p.getAddress()%></p>
+                        <span class="aa-top-slider-off"><%=p.getType()%></span>
+                        <p class="aa-top-slider-price"><%=p.getbPrice()%> - <%=p.getePrice()%> Tỷ</p>
                         <!-- <a href="-detail-akari-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
                     </div>
                 </a>
                 <!-- / Top slider content -->
             </div>
-            <!-- / Top slider single slide -->
-            <!-- Top slider single slide -->
-            <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-green-diamon.html">
-                    <img src="img/slider/overview%20(2).jpeg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Green Diamond</span>
-                        <h2 class="aa-top-slider-title">23500m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Đống Đa, Hà Nội</p>
-                        <span class="aa-top-slider-off">Studio</span>
-                        <p class="aa-top-slider-price">2,5 tỷ</p>
-                        <!-- <a href="-detail-green-diamon.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <!-- / Top slider single slide -->
-            <!-- Top slider single slide -->
-            <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-sunshine-city.html">
-                    <img src="img/slider/overview%20(3).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Sunshine City</span>
-                        <h2 class="aa-top-slider-title">28900m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Tây Hồ, Hà Nội</p>
-                        <span class="aa-top-slider-off">Studio</span>
-                        <p class="aa-top-slider-price">2,5 tỷ</p>
-                        <!-- <a href="-detail-sunshine-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <!-- / Top slider single slide -->
-            <!-- Top slider single slide -->
-            <div class="mySlider aa-top-slider-single ">
-                <a href="propertie-detail-sailing.html">
-                    <img src="img/slider/overview%20(4).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">The Sailing</span>
-                        <h2 class="aa-top-slider-title">19200m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>South Beach, Miami (USA)</p>
-                        <span class="aa-top-slider-off">Văn Phòng</span>
-                        <p class="aa-top-slider-price">3 tỷ</p>
-                        <a href="propertie-detail-sailing.html" class="aa-top-slider-btn">Xem Thêm<span
-                                class="fa fa-angle-double-right"></span></a>
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <!-- / Top slider single slide -->
-            <!-- Top slider single slide -->
-            <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-mizuki.html">
-                    <img src="img/slider/overview%20(5).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Mizuki Park</span>
-                        <h2 class="aa-top-slider-title">21350m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Đống Đa, Hà Nội</p>
-                        <span class="aa-top-slider-off">Thông Tầng</span>
-                        <p class="aa-top-slider-price">3,2 tỷ</p>
-                        <!-- <a href="-detail-mizuki.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <!-- / Top slider single slide -->
-            <!-- Top slider single slide -->
-
-            <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-matrix-one.html">
-                    <img src="img/slider/overview%20(6).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">The Matrix One</span>
-                        <h2 class="aa-top-slider-title">19600m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Hoàng Mai, Hà Nội</p>
-                        <span class="aa-top-slider-off">Văn Phòng</span>
-                        <p class="aa-top-slider-price">3 tỷ</p>
-                        <!-- <a href="-detail-matrix-one.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-eco.html">
-                    <img src="img/slider/overview%20(7).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Eco Dream</span>
-                        <h2 class="aa-top-slider-title">12300m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Thanh Trì, Hà Nội</p>
-                        <span class="aa-top-slider-off">Văn Phòng</span>
-                        <p class="aa-top-slider-price">3 tỷ</p>
-                        <!-- <a href="" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <div class="mySlider aa-top-slider-single ">
-                <a href="-detail-lavita.html">
-                    <img src="img/slider/overview%20(8).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Lavita Charm</span>
-                        <h2 class="aa-top-slider-title">31250m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quận 7, TP.HCM</p>
-                        <span class="aa-top-slider-off">Sky Villa</span>
-                        <p class="aa-top-slider-price">4,5 tỷ</p>
-                        <!-- <a href="" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-
-            </div>
-            <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-sky-central.html">
-                    <img src="img/slider/overview%20(9).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Sky Central</span>
-                        <h2 class="aa-top-slider-title">15430m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quận 1, TP.HCM</p>
-                        <span class="aa-top-slider-off">Áp Mái</span>
-                        <p class="aa-top-slider-price">2,8 tỷ</p>
-                        <!-- <a href="" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
-            <div class="mySlider aa-top-slider-single ">
-                <a href="properties-detail-metro.html">
-                    <img src="img/slider/overview%20(10).jpg" alt="img">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Metro Star</span>
-                        <h2 class="aa-top-slider-title">15600m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quận Bình Thạnh, TP.HCM</p>
-                        <span class="aa-top-slider-off">Dịch Vụ</span>
-                        <p class="aa-top-slider-price">1,5 tỷ</p>
-                        <!-- <a href="" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
-                    </div>
-                </a>
-                <!-- / Top slider content -->
-            </div>
+            <%}%>
             <!-- / Top slider single slide -->
         </div>
     </div>
@@ -247,12 +108,12 @@
 <section id="aa-advance-search">
     <div class="container">
         <div class="aa-advance-search-area">
-            <div class="form">
+            <div class="form" action="search" method="post">
                 <div class="aa-advance-search-top">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="aa-single-advance-search">
-                                <input type="text" placeholder="Nhập dự án mà bạn muốn tìm kiếm">
+                                <input name="txt" type="text" placeholder="Nhập dự án mà bạn muốn tìm kiếm">
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -293,8 +154,8 @@
                                     <option value="1">Hồ Bơi</option>
                                     <option value="2">Khu Vui Chơi</option>
                                     <option value="3">Phòng Gym</option>
-                                    <option value="4"><label>Khu Picnic</option>
-                                    <option value="5"><label>Công Viên</option>
+                                    <option value="4">Khu Picnic</option>
+                                    <option value="5">Công Viên</option>
                                 </select>
                             </div>
                         </div>
@@ -345,376 +206,52 @@
                 <span></span>
                 <p>Hãy Lựa Chọn Căn Hộ Phù Hợp Với Bạn Nhất</p>
             </div>
-            <div class="row">
-                <a href="properties-detail-akari-city.html">
-                    <div class="col-md-4">
-                        <article class="aa-properties-item">
-                            <a href="#" class="aa-properties-item-img">
-                                <img src="img/slider/overview%20(1).jpg" alt="img">
-                            </a>
-                            <div class="aa-tag for-sale">
-                                Đang Bán
-                            </div>
-                            <div class="aa-properties-item-content">
-                                <div class="aa-properties-about">
-                                    <h3><a href="#">Akari City</a></h3>
-                                    <p>Quận Bình Tân, Hồ Chí Minh</p>
-                                </div>
-                                <div class="aa-properties-detial">
-                                        <span class="aa-price">
-              2,7 tỷ
-            </span>
-                                    <a href="properties-detail-akari-city.html" class="aa-secondary-btn">Xem Chi
-                                        Tiết</a>
-                                </div>
-                            </div>
-                            <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                        </article>
-                    </div>
-                </a>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(2).jpeg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="">Green Diamond</a></h3>
-                                <p>Đống Đa, Hà Nội</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              2,5 tỷ
-            </span>
-                                <a href="properties-detail-green-diamon.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(3).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag sold-out">
-                            Đã Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">Sunshine City</a></h3>
-                                <p>Linh Trung, Thủ Đức</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              2,5 tỷ
-            </span>
-                                <a href="properties-detail-sunshine-city.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(4).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">The Sailing</a></h3>
-                                <p>Dĩ An, Bình Dương</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              3 tỷ
-            </span>
-                                <a href="propertie-detail-sailing.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(5).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag sold-out">
-                            Đã Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">Mizuki Park</a></h3>
-                                <p>Đống Đa, Hà Nội</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              3,2 tỷ
-            </span>
-                                <a href="properties-detail-mizuki.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(6).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">The Matrix One</a></h3>
-                                <p>Quận Gò Vấp, Hồ Chí Minh</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              3 tỷ
-            </span>
-                                <a href="properties-detail-matrix-one.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(7).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">Eco Dream</a></h3>
-                                <p>Thanh Trì, Hà Nội</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              3 tỷ
-            </span>
-                                <a href="properties-detail-eco.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(8).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">Lavita Charm</a></h3>
-                                <p>Quận 7, Hồ Chí Minh</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              4,5 tỷ
-            </span>
-                                <a href="properties-detail-lavita.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="#" class="aa-properties-item-img">
-                            <img src="img/slider/overview%20(9).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="#">Sky Central</a></h3>
-                                <p>Quận 1, Hồ Chí Minh</p>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-              2,8 tỷ
 
-            </span>
-                                <a href="properties-detail-sky-central.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
+            <div class="row">
+                <div class="col-md-12">
+                <% for (Propertie p : list1) { %>
                 <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="properties-detail-metro.html" class="aa-properties-item-img">
-                            <img src="img/slider/overview (10).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="properties-detail-metro.html">Metro Star</a></h3>
-                                <div class="b__main--rows">
-                                    <p class="b__address">Quận Bình Thạnh, Hồ Chí Minh</p>
-                                    <label>Chung Cư</label>
-                                </div>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-                            1,5 tỷ
-                          </span>
-                                <a href="properties-detail-metro.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
+                    <div class="aa-properties-content-body">
+                        <ul class="aa-properties-nav">
+
+                            <!-- 1 -->
+                            <li>
+                                <article class="aa-properties-item">
+                                    <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>" class="aa-properties-item-img">
+                                        <img src="<%= p.getImg() %>" alt="img">
+                                    </a>
+                                    <% if (p.isSoldOut()) { %>
+                                    <div class="aa-tag sold-out">Đã Bán</div>
+                                    <%} else { %>
+                                    <div class="aa-tag for-sale">Đang Bán</div>
+                                    <% } %>
+
+                                    <div class="aa-properties-item-content">
+
+                                        <div class="aa-properties-about">
+                                            <h3><a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%= p.getName()%>
+                                            </a></h3>
+                                            <div class="b__main--rows">
+                                                <p class="b__address"><%=p.getAddress()%>
+                                                </p>
+                                                <label><%= p.getType()%>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="aa-properties-detial">
+                                            <span class="aa-price"><%= p.getbPrice()%> - <%=p.getePrice()%>Tỷ</span>
+                                            <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>" class="aa-secondary-btn">Xem Chi
+                                                Tiết</a>
+                                        </div>
+                                    </div>
+                                    <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
+                                </article>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- 11 -->
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="properties-detail-akari-city.html" class="aa-properties-item-img">
-                            <img src="img/slider/overview (11).jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="properties-detail-akari-city.html">Le Grand Jardin</a></h3>
-                                <div class="b__main--rows">
-                                    <p class="b__address">Long Biên, Hà Nội</p>
-                                    <label>Chung Cư</label>
-                                </div>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-                            2,7 tỷ
-                          </span>
-                                <a href="properties-detail-akari-city.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
+                <%}%>
                 </div>
-                <!-- 12 -->
-                <div class="col-md-4">
-                    <article class="aa-properties-item">
-                        <a href="properties-detail-akari-city.html" class="aa-properties-item-img">
-                            <img src="img2/12.jpg" alt="img">
-                        </a>
-                        <div class="aa-tag for-sale">
-                            Đang Bán
-                        </div>
-                        <div class="aa-properties-item-content">
-                            <div class="aa-properties-about">
-                                <h3><a href="properties-detail-akari-city.html">C-Sky View</a></h3>
-                                <div class="b__main--rows">
-                                    <p class="b__address">Thủ Dầu Một, Bình Dương</p>
-                                    <label>Chung Cư</label>
-                                </div>
-                            </div>
-                            <div class="aa-properties-detial">
-                                    <span class="aa-price">
-                            3,3 tỷ
-                          </span>
-                                <a href="properties-detail-akari-city.html" class="aa-secondary-btn">Xem Chi Tiết</a>
-                            </div>
-                        </div>
-                        <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
-                    </article>
-                </div>
-                <!-- 10 -->
-                <!--            <div class="col-md-4">-->
-                <!--                <article class="aa-properties-item">-->
-                <!--                    <a href="properties-detail-metro.html" class="aa-properties-item-img">-->
-                <!--                        <img src="img/slider/overview (10).jpg" alt="img">-->
-                <!--                    </a>-->
-                <!--                    <div class="aa-tag for-sale">-->
-                <!--                        Đang Bán-->
-                <!--                    </div>-->
-                <!--                    <div class="aa-properties-item-content">-->
-                <!--                        <div class="aa-properties-about">-->
-                <!--                            <h3><a href="properties-detail-metro.html">Metro Star</a></h3>-->
-                <!--                            <div class="b__main&#45;&#45;rows">-->
-                <!--                                <p class="b__address">Quận Bình Thạnh, Hồ Chí Minh</p>-->
-                <!--                                <label>Chung Cư</label>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="aa-properties-detial">-->
-                <!--                            <span class="aa-price">-->
-                <!--                      2,7 tỷ-->
-                <!--                    </span>-->
-                <!--                            <a href="properties-detail-metro.html" class="aa-secondary-btn">Xem Chi Tiết</a>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </article>-->
-                <!--            </div>-->
-                <!--            &lt;!&ndash; 11 &ndash;&gt;-->
-                <!--            <div class="col-md-4">-->
-                <!--                <article class="aa-properties-item">-->
-                <!--                    <a href="properties-detail-akari-city.html" class="aa-properties-item-img">-->
-                <!--                        <img src="img/slider/overview (11).jpg" alt="img">-->
-                <!--                    </a>-->
-                <!--                    <div class="aa-tag for-sale">-->
-                <!--                        Đang Bán-->
-                <!--                    </div>-->
-                <!--                    <div class="aa-properties-item-content">-->
-                <!--                        <div class="aa-properties-about">-->
-                <!--                            <h3><a href="properties-detail-akari-city.html">Le Grand Jardin</a></h3>-->
-                <!--                            <div class="b__main&#45;&#45;rows">-->
-                <!--                                <p class="b__address">Long Biên, Hà Nội</p>-->
-                <!--                                <label>Chung Cư</label>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="aa-properties-detial">-->
-                <!--                            <span class="aa-price">-->
-                <!--                      4,2 tỷ-->
-                <!--                    </span>-->
-                <!--                            <a href="properties-detail-akari-city.html" class="aa-secondary-btn">Xem Chi Tiết</a>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </article>-->
-                <!--            </div>-->
-                <!--            &lt;!&ndash; 12 &ndash;&gt;-->
-                <!--            <div class="col-md-4">-->
-                <!--                <article class="aa-properties-item">-->
-                <!--                    <a href="properties-detail-akari-city.html" class="aa-properties-item-img">-->
-                <!--                        <img src="img2/12.jpg" alt="img">-->
-                <!--                    </a>-->
-                <!--                    <div class="aa-tag for-rent">-->
-                <!--                        Cho Thuê-->
-                <!--                    </div>-->
-                <!--                    <div class="aa-properties-item-content">-->
-                <!--                        <div class="aa-properties-about">-->
-                <!--                            <h3><a href="properties-detail-akari-city.html">C-Sky View</a></h3>-->
-                <!--                            <div class="b__main&#45;&#45;rows">-->
-                <!--                                <p class="b__address">Thủ Dầu Một, Bình Dương</p>-->
-                <!--                                <label>Chung Cư</label>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="aa-properties-detial">-->
-                <!--                            <span class="aa-price">-->
-                <!--                      3,3 tỷ-->
-                <!--                    </span>-->
-                <!--                            <a href="properties-detail-akari-city.html" class="aa-secondary-btn">Xem Chi Tiết</a>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </article>-->
-                <!--            </div>-->
             </div>
         </div>
     </div>
@@ -816,6 +353,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <%
+                    BlogService bs = new BlogService();
+                    List<Blog> list = bs.getNewBlog();
+                %>
+
                 <div class="aa-latest-blog-area">
                     <div class="aa-title">
                         <h2>Bài Viết Mới Nhất</h2>
@@ -824,68 +366,28 @@
                             trong lĩnh vực.</p>
                     </div>
                     <div class="aa-latest-blog-content">
-                        <div class="row">
                             <!-- start single blog -->
+                        <% for (Blog b : list) {%>
                             <div class="col-md-4">
+
                                 <article class="aa-blog-single">
                                     <figure class="aa-blog-img">
-                                        <a href="blog-detail-1.html"><img src="img/blog1 (1).jpg" alt="img"></a>
-                                        <span class="aa-date-tag">10/9/2022</span>
+                                        <a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><img src="<%=b.getImg()%>" alt="img"></a>
+                                        <span class="aa-date-tag"><%=b.getDate_create()%></span>
                                     </figure>
                                     <div class="aa-blog-single-content">
-                                        <h3><a href="blog-detail-1.html">Sức hút của thị trường BĐS Duy Tiên và cơ hội
-                                            cho giới địa ốc.</a></h3>
-                                        <p>Hội tụ những tiềm năng về vị trí, hạ tầng, quy hoạch; Duy Tiên đang trở thành
-                                            “ngôi sao sáng” trên bản đồ thị trường bất động sản, thu hút một lượng lớn
-                                            các nhà đầu tư.</p>
+                                        <h3><a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><%=b.getTitle()%></a></h3>
+                                        <p><%=b.getSubtitle()%></p>
                                         <div class="aa-blog-single-bottom">
                                             <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
+<%--                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>--%>
                                         </div>
                                     </div>
 
                                 </article>
                             </div>
-                            <!-- start single blog -->
-                            <div class="col-md-4">
-                                <article class="aa-blog-single">
-                                    <figure class="aa-blog-img">
-                                        <a href="blog-detail-2.html"><img src="img/blog1 (2).png" alt="img"></a>
-                                        <span class="aa-date-tag">8/9/2022</span>
-                                    </figure>
-                                    <div class="aa-blog-single-content">
-                                        <h3><a href="blog-detail-2.html">Tận hưởng “bữa tiệc thị giác” với tầm view
-                                            triệu đô ngay tại trung tâm Hà Nội.</a></h3>
-                                        <p>Khai Sơn City - dự án căn hộ mang phong cách hiện đại tại trung tâm Hà Nội
-                                            đang được các nhà đầu tư săn đón khi mang đến cho tầng lớp tinh hoa tầm nhìn
-                                            “triệu đô” đắt giá.</p>
-                                        <div class="aa-blog-single-bottom">
-                                            <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <!-- start single blog -->
-                            <div class="col-md-4">
-                                <article class="aa-blog-single">
-                                    <figure class="aa-blog-img">
-                                        <a href="#"><img src="img/blog1 (3).png" alt="img"></a>
-                                        <span class="aa-date-tag">6/9/2022</span>
-                                    </figure>
-                                    <div class="aa-blog-single-content">
-                                        <h3><a href="#">Thị trường bất động sản khan hiếm nguồn cung, đâu là tâm điểm
-                                            ?</a></h3>
-                                        <p>Nguồn cung hạn chế, lượng tiêu thụ không ngừng tăng khiến người mua nhà, giới
-                                            đầu tư, kinh doanh bước vào “cuộc đua” săn tìm sản phẩm.</p>
-                                        <div class="aa-blog-single-bottom">
-                                            <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
+                        <%}%>
+                        <!-- start single blog -->
                     </div>
                 </div>
             </div>
@@ -1035,7 +537,7 @@
 
 
 <!-- Footer -->
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 <!-- / Footer -->
 
 
