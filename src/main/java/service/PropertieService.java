@@ -1,18 +1,50 @@
 package service;
 
 import database.DBConnect;
-import model.CanHoTrong;
+import database.JDBCUtil;
 import model.Propertie;
 import model.Properties_detail;
+import model.SoPhong;
 
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class PropertieService {
+
+    //search by id
+    public static Propertie findById(Propertie p) throws SQLException {
+        Propertie res = null;
+        try {
+            Connection connection = JDBCUtil.getConnection();
+            String sql = "SELECT * FROM properties WHERE id_duan=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, p.getId_duan());
+            System.out.println(sql);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int idP = rs.getInt("id_duan");
+                String img = rs.getString("img");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                boolean bestseller = rs.getBoolean("bestseller");
+                boolean soldout = rs.getBoolean("soldout");
+                double bPrice = rs.getDouble("beginPrice");
+                double ePrice = rs.getDouble("endPrice");
+                int area = rs.getInt("area");
+                String type = rs.getString("type");
+
+                Propertie propertie = new Propertie(idP, img, name, bPrice, ePrice, address, bestseller, soldout, area, type);
+                break;
+            }
+            JDBCUtil.disconection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+
 
     //lấy ra danh sách tất cả sản phẩm
     public List<Propertie> getListPropertie() {
@@ -108,71 +140,40 @@ public class PropertieService {
     public static List<Properties_detail> getListPropertieDetail(String id_duan) {
         LinkedList<Properties_detail> list = new LinkedList<Properties_detail>();
         try {
-            Statement statement = DBConnect.getInstall().get();
-            if (statement != null) {
+            Connection connection = JDBCUtil.getConnection();
+            String sql = "SELECT p.id_duan, p.img, p.name,p.address, p.bestseller, p.beginPrice, p.endPrice,p.soldout,p.area,p.type, pd.id_ctda, pd.map,s.id_sophong, s.num_bath, s.num_bed, s.num_kitchen,s.num_living FROM properties p, properties_details pd, so_phong s WHERE  p.id_duan=pd.id_duan AND s.id_sophong= pd.id_sophong AND  p.id_duan=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, Integer.parseInt(id_duan));
+            System.out.println(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                int idD = rs.getInt("id_ctda");
+                String map = rs.getString("map");
 
-                /*
-                b1 sửa lại cái queries cho no lay duoc het nd co lien ket voi cai bang detail (o day la join them cai canhotrong zo)
-                b2 lay may cai thuoc tin cua cai can ho trong
-                b3 bo het may thuoc tin cua cai canhotrong vua lay zo cai do' do'
-                b4 xog
-                 */
-                ResultSet rs = statement.executeQuery("select pd.id_ctda, pd.id_duan, pd.type, pd.time_create, pd.time_modified, " +
-                        ",pd.map, p.img, p.name, p.beginPrice, p.endPrice ,p.bestseller, p.soldout, p.area where pd.id_duan = p.id_duan and pd.id_duan = '" + id_duan + "'");
-                while (rs.next()) {
-                    //lay cai nay truyen du lieu như cái controller z^^o nho sua lai queri
-                    //join them cai bang can ho trong zo cai cau queri o tren
-                    int idD = rs.getInt("id_ctda");
-                    String map = rs.getString("map");
-                    //sau khi join xog r them zo nhu cai prop
-                    //dayne
-                    CanHoTrong canHoTrong = new CanHoTrong();
-                    int idP = rs.getInt("id_duan");
-                    String img = rs.getString("img");
-                    String name = rs.getString("name");
-                    String address = rs.getString("address");
-                    boolean bestseller = rs.getBoolean("bestseller");
-                    boolean soldout = rs.getBoolean("soldout");
-                    double bPrice = rs.getDouble("beginPrice");
-                    double ePrice = rs.getDouble("endPrice");
-                    int area = rs.getInt("area");
-                    String type = rs.getString("type");
-                    Date createTime = rs.getDate("time_create");
-                    Date modifiedTime = rs.getDate("time_modified");
-
-                    Propertie propertie = new Propertie(idP, img, name, bPrice, ePrice, address, bestseller, soldout, area, type);
-                    Properties_detail p = new Properties_detail(idD, propertie, canHoTrong, map);
-                    list.add(p);
-
-                    //lam tuong tu nhu nay h tui lam
-//                   l``am y như tr^^en r^^ồi tạo cái
-//                    list.add(new Properties_detail(
-//                            rs.getInt("id_ctda"),
-//                            rs.getInt("id_duan"),
-//                            rs.getString("type"),
-//                            rs.getDate("time_create"),
-//                            rs.getDate("time_modified"),
-//                            rs.getString("id_canho"),
-//                            rs.getString("map"),
-//                            rs.getString("img"),
-//                            rs.getString("name"),
-//                            rs.getString("price"),
-//                            rs.getString("bestseller"),
-//                            rs.getBoolean("soldout"),
-//                            rs.getInt("id_service"),
-//                            rs.getBoolean("hoboi"),
-//                            rs.getBoolean("khuvuichoi"),
-//                            rs.getBoolean("picnic"),
-//                            rs.getBoolean("gym"),
-//                            rs.getBoolean("congvien"),
-//                            rs.getInt("num_bed"),
-//                            rs.getInt("num_bath"),
-//                            rs.getInt("num_living"),
-//                            rs.getInt("num_kitchen")));
+                int idSophong = rs.getInt("id_sophong");
+                int num_bed = rs.getInt("num_bed");
+                int num_bath = rs.getInt("num_bath");
+                int num_living = rs.getInt("num_living");
+                int num_kitchen = rs.getInt("num_kitchen");
+                SoPhong soPhong = new SoPhong(idSophong, num_bed, num_bath, num_living, num_kitchen);
 
 
-                }
+                int idP = rs.getInt("id_duan");
+                String img = rs.getString("img");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                boolean bestseller = rs.getBoolean("bestseller");
+                boolean soldout = rs.getBoolean("soldout");
+                double bPrice = rs.getDouble("beginPrice");
+                double ePrice = rs.getDouble("endPrice");
+                int area = rs.getInt("area");
+                String type = rs.getString("type");
+
+                Propertie propertie = new Propertie(idP, img, name, bPrice, ePrice, address, bestseller, soldout, area, type);
+                Properties_detail p = new Properties_detail(idD, propertie, map, soPhong);
+                list.add(p);
             }
+            JDBCUtil.disconection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

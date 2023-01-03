@@ -1,19 +1,17 @@
 package model;
 
 
-import java.sql.Date;
-
 public class Properties_detail {
     int id_ctda;
     Propertie propertie;
-    CanHoTrong canHoTrong;
     String map;
+    SoPhong soPhong;
 
-    public Properties_detail(int id_ctda, Propertie propertie, CanHoTrong canHoTrong, String map) {
+    public Properties_detail(int id_ctda, Propertie propertie, String map, SoPhong soPhong) {
         this.id_ctda = id_ctda;
         this.propertie = propertie;
-        this.canHoTrong = canHoTrong;
         this.map = map;
+        this.soPhong=soPhong;
     }
 
     public Properties_detail() {
@@ -35,19 +33,19 @@ public class Properties_detail {
         this.propertie = propertie;
     }
 
-    public CanHoTrong getCanHoTrong() {
-        return canHoTrong;
-    }
-
-    public void setCanHoTrong(CanHoTrong canHoTrong) {
-        this.canHoTrong = canHoTrong;
-    }
-
     public String getMap() {
         return map;
     }
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public SoPhong getSoPhong() {
+        return soPhong;
+    }
+
+    public void setSoPhong(SoPhong soPhong) {
+        this.soPhong = soPhong;
     }
 }

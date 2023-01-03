@@ -104,15 +104,15 @@
                             <img src="img/slider/bath_1.jpg" alt="img">
                         </div>
                         <div class="aa-properties-info">
-                            <h2><%=p.getName()%></h2>
-                            <span class="aa-price"><%=p.getPrice()%> Tỷ</span>
+                            <h2><%=p.getPropertie().getName()%></h2>
+                            <span class="aa-price"><%=p.getPropertie().getbPrice()%> - <%=p.getPropertie().getePrice()%> Tỷ</span>
                             <h4>Tổng Quan</h4>
                             <ul>
-                                <li>Loại Hình: <%=p.getType()%></li>
-                                <li><%=p.getLiving()%> Phòng Khách</li>
-                                <li><%=p.getBed()%> Phòng Ngủ</li>
-                                <li><%=p.getKitchen()%> Nhà Bếp</li>
-                                <li><%=p.getBath()%> Phòng Khách</li>
+                                <li>Loại Hình: <%=p.getPropertie().getType()%></li>
+                                <li><%=p.getSoPhong().getNum_living()%> Phòng Khách</li>
+                                <li><%=p.getSoPhong().getNum_bed()%> Phòng Ngủ</li>
+                                <li><%=p.getSoPhong().getNum_kitchen()%> Nhà Bếp</li>
+                                <li><%=p.getSoPhong().getNum_living()%> Phòng Khách</li>
                             </ul>
                             <h4>Tiện Ích Của Akari City</h4>
                             <ul>
