@@ -6,7 +6,6 @@
 <%@ page import="model.Propertie" %>
 <%@ page import="model.User" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="model.PropertiesWL" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="database.WishListDAO" %>
 <%@ page import="model.WishList" %>
@@ -169,7 +168,7 @@
                                             </div>
                                         </div>
                                         <div class="aa-properties-detial">
-                                            <span class="aa-price"><%= p.getPrice()%> Tỷ</span>
+                                            <span class="aa-price"><%= p.getbPrice()%> - <%=p.getePrice()%> Tỷ</span>
                                             <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"
                                                class="aa-secondary-btn">Xem Chi
                                                 Tiết</a>
