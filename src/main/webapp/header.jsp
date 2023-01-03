@@ -41,7 +41,7 @@
                                                                                      href="properties.jsp"> <b><%=user.getUserName()%></b> <span
                                         class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="properties.jsp">PROPERTIES</a></li>
+                                            <li><a href="wishlist.jsp">Dự án quan tâm</a></li>
                                             <li><a href="propertie-detail.jsp">PROPERTIES DETAIL</a></li>
                                             <li><a href="properties.jsp">PROPERTIES</a></li>
                                             <li><a href="propertie-detail.jsp">PROPERTIES DETAIL</a></li>

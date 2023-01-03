@@ -172,7 +172,7 @@ public class UserController extends HttpServlet {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             if (user == null) {
-                response.sendRedirect(url + "/error/401.jsp");
+                response.sendRedirect("/error/401.jsp");
             } else {
                 if (!oldPass_Encode.equals(user.getPass())) {
                     error = "Mật khẩu hiện tại không chính xác!";
