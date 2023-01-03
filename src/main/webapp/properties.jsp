@@ -4,6 +4,12 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="service.PropertieService" %>
 <%@ page import="model.Propertie" %>
+<%@ page import="model.User" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="model.PropertiesWL" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="database.WishListDAO" %>
+<%@ page import="model.WishList" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -34,7 +40,7 @@
     <link id="switcher" href="css/theme-color/default-theme.css" rel="stylesheet">
 
     <%
-        String url=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     %>
     <link rel="stylesheet" href="<%=url%>/css/style.css">
 
@@ -67,7 +73,7 @@
 
 
 <%--<!-- Start header and menu section -->--%>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <%--<!-- End header and menu section -->--%>
 
 <!-- Start Proerty header  -->
@@ -139,7 +145,8 @@
                             <!-- 1 -->
                             <li>
                                 <article class="aa-properties-item">
-                                    <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>" class="aa-properties-item-img">
+                                    <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"
+                                       class="aa-properties-item-img">
                                         <img src="<%= p.getImg() %>" alt="img">
                                     </a>
                                     <% if (p.isSoldOut()) { %>
@@ -151,8 +158,9 @@
                                     <div class="aa-properties-item-content">
 
                                         <div class="aa-properties-about">
-                                            <h3><a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%= p.getName()%>
-                                            </a></h3>
+                                            <h3>
+                                                <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%= p.getName()%>
+                                                </a></h3>
                                             <div class="b__main--rows">
                                                 <p class="b__address"><%=p.getAddress()%>
                                                 </p>
@@ -162,39 +170,77 @@
                                         </div>
                                         <div class="aa-properties-detial">
                                             <span class="aa-price"><%= p.getPrice()%> Tỷ</span>
-                                            <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>" class="aa-secondary-btn">Xem Chi
+                                            <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"
+                                               class="aa-secondary-btn">Xem Chi
                                                 Tiết</a>
                                         </div>
                                     </div>
-                                    //ngay chỗ này
-
-                                    <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
+                                    <%
+                                        User user = (User) session.getAttribute("user");
+                                        if (!(user == null)) {
+                                            WishListDAO wishListDAO = new WishListDAO();
+                                            WishList w = new WishList();
+                                            w.setId_user(user.getId_User());
+                                            ArrayList<Propertie> list = wishListDAO.selectByUserId(w);
+                                            String icon = "";
+                                            for (Propertie propertie : list) {
+                                    %>
+                                    <form action="/du-an-quan-tam" method="post">
+                                        <input type="hidden" name="action" value="them">
+                                        <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                        <button style="background-color: transparent; border: none" class="btn"
+                                                type="submit">
+                                            <%
+                                                if (p.getId_duan() == propertie.getId_duan()) {
+                                            %>
+                                            <i class="fa-regular fa-heart fa-solid"></i>
+                                            <%
+                                            } else {
+                                            %>
+                                            <i class="fa-regular fa-heart"></i>
+                                            <%
+                                                }
+                                            %>
+                                        </button>
+                                    </form>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </article>
-                                <%}%>
+                                <%
+                                    }
+                                %>
                             </li>
                     </div>
                     <!-- Start properties content bottom -->
                     <div class="aa-properties-content-bottom">
                         <nav>
-                                <div class="pagination">
-                                    <li class="page-item previous-page <%=(start==0)?"disabled":""%>"><a href="#" aria-label="Previous">&laquo;</a></li>
-                                    <%
-                                        int a, b;
-                                        int limit = list1.size() / 20;
-                                        if (limit * 20 < list1.size()) {
-                                            limit += 1;
+                            <div class="pagination">
+                                <li class="page-item previous-page <%=(start==0)?"disabled":""%>"><a href="#"
+                                                                                                     aria-label="Previous">&laquo;</a>
+                                </li>
+                                <%
+                                    int a, b;
+                                    int limit = list1.size() / 20;
+                                    if (limit * 20 < list1.size()) {
+                                        limit += 1;
+                                    }
+                                    for (int i = 1; i <= limit; i++) {
+                                        a = (i - 1) * 20;
+                                        b = i * 20;
+                                        if (b > list1.size()) {
+                                            b = list1.size();
                                         }
-                                        for (int i = 1; i <= limit; i++) {
-                                            a = (i - 1) * 20;
-                                            b = i * 20;
-                                            if (b > list1.size()) {
-                                                b = list1.size();
-                                            }
-                                    %>
-                                    <li class="page-item current-page active"><a class="page-link" href="properties.jsp?start=<%=a%>&end=<%=b%>"><%=i%></a></li>
-                                    <%}%>
-                                    <li class="page-item next-page <%= (start+limit>=end)?"disabled":""%>"><a href="#" aria-label="Next">&raquo;</a></li>
-                                </div>
+                                %>
+                                <li class="page-item current-page active"><a class="page-link"
+                                                                             href="properties.jsp?start=<%=a%>&end=<%=b%>"><%=i%>
+                                </a></li>
+                                <%}%>
+                                <li class="page-item next-page <%= (start+limit>=end)?"disabled":""%>"><a href="#"
+                                                                                                          aria-label="Next">&raquo;</a>
+                                </li>
+                            </div>
                         </nav>
                     </div>
                 </div>

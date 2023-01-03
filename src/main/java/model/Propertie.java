@@ -1,7 +1,7 @@
 package model;
 
 public class Propertie {
-    String id_duan;
+    int id_duan;
     String img;
     String name;
     String price;
@@ -9,7 +9,7 @@ public class Propertie {
     boolean isSoldOut;
     String type;
 
-    public Propertie(String id_duan, String img, String name, String price, String address, boolean isSoldOut, String type) {
+    public Propertie(int id_duan, String img, String name, String price, String address, boolean isSoldOut, String type) {
         this.id_duan = id_duan;
         this.img = img;
         this.name = name;
@@ -22,11 +22,11 @@ public class Propertie {
     public Propertie() {
     }
 
-    public String getId_duan() {
+    public int getId_duan() {
         return id_duan;
     }
 
-    public void setId_duan(String id_duan) {
+    public void setId_duan(int id_duan) {
         this.id_duan = id_duan;
     }
 
