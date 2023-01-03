@@ -1,10 +1,10 @@
-<%@ page import="model.User" %>
 <%@ page import="service.PropertieService" %>
-<%@ page import="model.Propertie" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Blog" %>
-<%@ page import="model.Blog_detail" %>
 <%@ page import="service.BlogService" %>
+<%@ page import="database.WishListDAO" %>
+<%@ page import="model.*" %>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -244,7 +244,52 @@
                                                 Tiết</a>
                                         </div>
                                     </div>
-                                    <i class="fa-regular fa-heart btn" onclick="changeIcon(this)"></i>
+                                    <%
+                                        User user = (User) session.getAttribute("user");
+                                        if (!(user == null)) {
+                                            WishListDAO wishListDAO = new WishListDAO();
+                                            WishList w = new WishList();
+                                            w.setId_user(user.getId_User());
+                                            ArrayList<Propertie> list = wishListDAO.selectByUserId(w);
+                                            if (list.size() > 0) {
+                                                for (Propertie propertie : list) {
+                                    %>
+                                    <form action="/du-an-quan-tam" method="post">
+                                        <input type="hidden" name="action" value="them">
+                                        <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                        <input type="hidden" name="url" value="<%=request.getRequestURI().toString()%>">
+                                        <button style="background-color: transparent; border: none" class="btn"
+                                                type="submit">
+                                                <%
+                                                if (p.getId_duan() == propertie.getId_duan()) {
+                                            %>
+                                            <i class="fa-regular fa-heart fa-solid"></i>
+                                                <%
+                                            } else {
+                                            %>
+                                            <i class="fa-regular fa-heart"></i>
+                                                <%
+                                                }
+                                            %>
+                                    </form>
+                                    <%
+                                        }
+                                    } else {
+                                    %>
+                                    <form action="/du-an-quan-tam" method="post">
+                                        <input type="hidden" name="action" value="them">
+                                        <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                        <input type="hidden" name="url" value="<%=request.getRequestURI().toString()%>">
+                                        <button style="background-color: transparent; border: none" class="btn"
+                                                type="submit">
+                                            <i class="fa-regular fa-heart"></i>
+
+                                    </form>
+                                    <%
+                                            }
+                                        }
+                                    %>
+
                                 </article>
                             </li>
                         </ul>
@@ -373,11 +418,13 @@
                                 <article class="aa-blog-single">
                                     <figure class="aa-blog-img">
                                         <a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><img src="<%=b.getImg()%>" alt="img"></a>
+
                                         <span class="aa-date-tag"><%=b.getDate_create()%></span>
                                     </figure>
                                     <div class="aa-blog-single-content">
                                         <h3><a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><%=b.getTitle()%></a></h3>
                                         <p><%=b.getSubtitle()%></p>
+
                                         <div class="aa-blog-single-bottom">
                                             <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
 <%--                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>--%>
