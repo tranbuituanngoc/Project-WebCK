@@ -7,11 +7,12 @@ public class Properties_detail {
     String map;
     SoPhong soPhong;
 
+
     public Properties_detail(int id_ctda, Propertie propertie, String map, SoPhong soPhong) {
         this.id_ctda = id_ctda;
         this.propertie = propertie;
         this.map = map;
-        this.soPhong=soPhong;
+        this.soPhong = soPhong;
     }
 
     public Properties_detail() {
@@ -48,4 +49,6 @@ public class Properties_detail {
     public void setSoPhong(SoPhong soPhong) {
         this.soPhong = soPhong;
     }
+
+
 }

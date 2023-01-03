@@ -10,21 +10,20 @@ public class Blog extends BlogService {
     String id_category;
     String img;
     String title;
-    String subTitle;
+    String subtitle;
+    Date date_create;
 
-    Date date;
-
-    public Blog() {
-
-    }
-
-    public Blog(int id_blog, String id_category, String img, String title, String subTitle, Date date) {
+    public Blog(int id_blog, String id_category, String img, String title, String subtitle, Date date_create) {
         this.id_blog = id_blog;
         this.id_category = id_category;
         this.img = img;
         this.title = title;
-        this.subTitle = subTitle;
-        this.date = date;
+        this.subtitle = subtitle;
+        this.date_create = date_create;
+    }
+
+    public Blog() {
+
     }
 
     public int getId_blog() {
@@ -59,19 +58,19 @@ public class Blog extends BlogService {
         this.title = title;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDate_create() {
+        return date_create;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate_create(Date date_create) {
+        this.date_create = date_create;
     }
 }

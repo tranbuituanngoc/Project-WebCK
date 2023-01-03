@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="service.BlogService" %>
 <%@ page import="model.Blog" %>
+<%@ page import="model.BlogCategory" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -72,7 +73,7 @@
           <div class="aa-property-header-inner">
             <h2>Tin Tức</h2>
             <ol class="breadcrumb">
-            <li><a href="#">Trang chủ</a></li>
+            <li><a href="index.jsp">Trang chủ</a></li>
             <li class="active">Tin Tức</li>
           </ol>
           </div>
@@ -113,11 +114,11 @@
                       <div class="col-md-6 col-sm-6">
                         <article class="aa-blog-single">
                           <figure class="aa-blog-imgs">
-                            <a href="blog-detail.jsp?id_blog=<%=b.getId()%>"><img alt="img" src="<%= b.getImg() %>"></a>
+                            <a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><img alt="img" src="<%= b.getImg() %>"></a>
                           </figure>
                           <div class="aa-blog-single-content">
-                            <h4><a href="blog-detail.jsp?id_blog=<%=b.getId()%>"><%= b.getTitle() %></a></h4>
-                            <p><%= b.getSubTitle()%></p>
+                            <h4><a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><%= b.getTitle() %></a></h4>
+                            <p><%= b.getSubtitle()%></p>
                           </div>
                         </article>
                       </div>
@@ -128,7 +129,7 @@
                       <div class="aa-properties-content-bottom">
                         <nav>
                           <ul class="pagination">
-                            <li><a aria-label="Previous" href="blog_archive.jsp?start=<%=start-1%>"><span aria-hidden="true">«</span></a></li>
+                            <li><a aria-label="Previous" href="blog_archive.jsp?start=<%=start-6%>&end=<%=end-6%>"><span aria-hidden="true">«</span></a></li>
                             <%
                               int a, b;
                               int limit = list1.size() / 6;
@@ -144,7 +145,7 @@
                             %>
                             <li class="page-item current-page"><a class="page-link" href="blog_archive.jsp?start=<%=a%>&end=<%=b%>"><%=i%></a></li>
                             <%}%>
-                            <li><a aria-label="Next" href="blog_archive.jsp?start=<%=start+1%>"><span aria-hidden="true">»</span></a></li>
+                            <li><a aria-label="Next" href="blog_archive.jsp?start=<%=start+6%>&end=<%=end+6%>"><span aria-hidden="true">»</span></a></li>
                           </ul>
                         </nav>
                       </div>
@@ -157,52 +158,47 @@
                 <aside class="aa-blog-sidebar">
                   <!-- Start single sidebar -->
                   <div class="aa-blog-sidebar-single">
+                    <%
+                      BlogService bc = new BlogService();
+                      List<BlogCategory> listCate = bc.getBlogCate();
+                    %>
                     <h3>Danh Mục Tin Tức</h3>
                     <ul class="aa-blog-catg">
-                      <li><a>Điểm tin Bất động sản</a></li>
-                      <li><a>Chính sách - Quy hoạch</a></li>
-                      <li><a>Báo cáo thị trường</a></li>
-                      <li><a>Kiến trúc - Phong Thủy</a></li>
-                      <li><a>Tin tức khu vực</a></li>
+                      <% for(BlogCategory bl : listCate) {%>
+                      <li><a href="cateBlog.jsp?id_blog=<%=bl.getId_category()%>"><%=bl.getName()%></a></li>
+                      <%}%>
                     </ul>
                   </div>
                   <!-- Start single sidebar -->
-                  <div class="aa-blog-sidebar-single">
-                    <h3>Thẻ</h3>
-                    <div class="tag-cloud">
-                      <a href="#">Bất động sản</a>
-                      <a href="#">Đầu tư</a>
-                      <a href="#">Địa ốc</a>
-                      <a href="#">Căn hộ cao cấp</a>
-                      <a href="#">Căn hộ thông thường</a>
-                    </div>
-                  </div>
+<%--                  <div class="aa-blog-sidebar-single">--%>
+<%--                    <h3>Thẻ</h3>--%>
+<%--                    <div class="tag-cloud">--%>
+<%--                      <a href="#">Bất động sản</a>--%>
+<%--                      <a href="#">Đầu tư</a>--%>
+<%--                      <a href="#">Địa ốc</a>--%>
+<%--                      <a href="#">Căn hộ cao cấp</a>--%>
+<%--                      <a href="#">Căn hộ thông thường</a>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
                   <!-- Start single sidebar -->
                   <div class="aa-blog-sidebar-single">
                     <h3>Bài viết mới nhất</h3>
+                    <%
+                      List<Blog> list = bs.getNewBlog();
+                    %>
                     <div class="aa-blog-recent-post">
+                      <% for (Blog b1 : list) {%>
                       <div class="media">
                         <div class="media-left">
-                          <a href="#">
-                            <img alt="img" src="img/blog1 (1).jpg" class="media-object">
+                          <a href="blog-detail.jsp?id_blog=<%=b1.getId_blog()%>">
+                            <img alt="img" src="<%=b1.getImg()%>" class="media-object">
                           </a>
                         </div>
                         <div class="media-body">
-                          <h5 class="media-heading"><a href="blog-detail-1.html">Sức hút của thị trường BĐS Duy Tiên và cơ hội cho giới địa ốc</a></h5>
-                          <!-- <p>Hội tụ những tiềm năng về vị trí, hạ tầng, quy hoạch; Duy Tiên đang trở thành “ngôi sao sáng” trên bản đồ thị trường bất động sản, thu hút một lượng lớn các nhà đầu tư.</p>                 -->
-                          <!-- <span>15 April, 16</span> -->
+                          <h5 class="media-heading"><a href="blog-detail.jsp?id_blog=<%=b1.getId_blog()%>"><%=b1.getTitle()%></a></h5>
                         </div>
                       </div>
-                      <div class="media">
-                        <div class="media-left">
-                          <a href="#">
-                            <img alt="img" src="img/blog1 (2).png" class="media-object">
-                          </a>
-                        </div>
-                        <div class="media-body">
-                          <h5 class="media-heading"><a href="blog-detail-2.html">Tận hưởng “bữa tiệc thị giác” với tầm view triệu đô ngay tại trung tâm Hà Nội</a></h5>
-                        </div>
-                      </div>
+                      <%}%>
                     </div>
                   </div>
                   <!-- Start single sidebar -->

@@ -124,6 +124,7 @@
                     <%
                         PropertieService pds = new PropertieService();
                         List<Propertie> list1 = pds.getListPropertie();
+                        List<Propertie> list3 = pds.getListHighLight();
                         int start = 0, end = 20;
                         if (list1.size() < 100) {
                             end = 20;
@@ -155,7 +156,6 @@
                                     <% } %>
 
                                     <div class="aa-properties-item-content">
-
                                         <div class="aa-properties-about">
                                             <h3>
                                                 <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%= p.getName()%>
@@ -229,97 +229,15 @@
                     <div class="aa-properties-content-bottom">
                         <nav>
                             <div class="pagination">
-                                <li class="page-item previous-page <%=(start==0)?"disabled":""%>"><a href="#"
-                                                                                                     aria-label="Previous">&laquo;</a>
-                                </li>
+                                <li class="page-item previous-page <%=(start==0)?"disabled":""%>"><a href="properties.jsp?start=<%=start - 10%>&end<%=end - 10%>" aria-label="Previous">&laquo;</a></li>
                                 <%
-                                    int
-                                            a,
-                                            b;
-                                    int
-                                            limit
-                                            =
-                                            list1
-                                                    .
-                                                    size
-                                                            (
-                                                            )
-                                                    /
-                                                    20;
-                                    if
-                                    (
-                                            limit
-                                                    *
-                                                    20
-                                                    <
-                                                    list1
-                                                            .
-                                                            size
-                                                                    (
-                                                                    )
-                                    ) {
-                                        limit
-                                                +=
-                                                1
-                                        ;
-                                    }
-                                    for
-                                    (
-                                            int
-                                            i
-                                            =
-                                            1
-                                            ;
-                                            i
-                                                    <=
-                                                    limit
-                                            ;
-                                            i
-                                                    ++
-                                    ) {
-                                        a
-                                                =
-                                                (
-                                                        i
-                                                                -
-                                                                1
-                                                )
-                                                        *
-                                                        20
-                                        ;
-                                        b
-                                                =
-                                                i
-                                                        *
-                                                        20
-                                        ;
-                                        if
-                                        (
-                                                b
-                                                        >
-                                                        list1
-                                                                .
-                                                                size
-                                                                        (
-                                                                        )
-                                        ) {
-                                            b
-                                                    =
-                                                    list1
-                                                            .
-                                                            size
-                                                                    (
-                                                                    )
-                                            ;
+                                 if (b > list1.size()) {
+                                            b = list1.size();
                                         }
                                 %>
-                                <li class="page-item current-page active"><a class="page-link"
-                                                                             href="properties.jsp?start=<%=a%>&end=<%=b%>"><%=i%>
-                                </a></li>
+                                <li class="page-item current-page"><a class="page-link" href="properties.jsp?start=<%=a%>&end=<%=b%>"><%=i%></a></li>
                                 <%}%>
-                                <li class="page-item next-page <%= (start+limit>=end)?"disabled":""%>"><a href="#"
-                                                                                                          aria-label="Next">&raquo;</a>
-                                </li>
+                                <li class="page-item next-page <%=(start+limit>=end)?"":""%>"><a href="properties.jsp?start=<%=start + 10%>&end=<%=end + 10%>" aria-label="Next">&raquo;</a></li>
                             </div>
                         </nav>
                     </div>
@@ -400,46 +318,24 @@
                             </div>
                         </form>
                     </div>
+
                     <!-- Start Single properties sidebar -->
                     <div class="aa-properties-single-sidebar">
                         <h3>Dự Án Nổi Bật</h3>
+                        <% for (Propertie p : list3) {%>
                         <div class="media">
                             <div class="media-left">
-                                <a href="properties-detail-metro.html">
-                                    <img class="media-object" src="img/slider/overview%20(10).jpg" alt="img">
+                                <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>">
+                                    <img class="media-object" src="<%=p.getImg()%>" alt="img">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="properties-detail-metro.html">Metro Star</a></h4>
-                                <p>Quận Bình Thạnh, TP.HCM</p>
-                                <span>1,5 Tỷ</span>
+                                <h4 class="media-heading"><a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>">Metro Star</a></h4>
+                                <p><%=p.getAddress()%></p>
+                                <span><%=p.getbPrice()%> - <%=p.getePrice()%> Tỷ</span>
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="properties-detail-lavita.html">
-                                    <img class="media-object" src="img/slider/overview%20(8).jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="properties-detail-lavita.html">Lavita Charm</a></h4>
-                                <p>Quận 7, TP.HCM</p>
-                                <span>4,5 Tỷ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="properties-detail-sunshine-city.html">
-                                    <img class="media-object" src="img/slider/overview%20(3).jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="properties-detail-sunshine-city.html">Sunshine
-                                    City</a></h4>
-                                <p>Linh Trung, Thủ Đức</p>
-                                <span>2,5 Tỷ</span>
-                            </div>
-                        </div>
+                        <%}%>
                     </div>
                 </aside>
             </div>
