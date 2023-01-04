@@ -1,7 +1,8 @@
-
 <%@ page import="java.util.List" %>
 <%@ page import="service.PropertieService" %>
 <%@ page import="model.Properties_detail" %>
+<%@ page import="model.Service" %>
+<%@ page import="database.ServiceDAO" %>
 <%@ page import="model.Propertie" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -32,7 +33,7 @@
     <link id="switcher" href="css/theme-color/default-theme.css" rel="stylesheet">
 
     <%
-        String url=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     %>
     <link rel="stylesheet" href="<%=url%>/css/style.css">
 
@@ -62,7 +63,7 @@
 
 
 <%--<!-- Start header and menu section -->--%>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <%--<!-- End header and menu section -->--%>
 
 <%
@@ -99,7 +100,12 @@
                 <div class="aa-properties-content">
                     <!-- Start properties content body -->
                     <div class="aa-properties-details">
-                        <% for (Properties_detail p : list2) { %>
+                        <% for (Properties_detail p : list2) {
+                            Service s = new Service();
+                            s.setId_ctda(p.getId_ctda());
+                            ServiceDAO serviceDAO = new ServiceDAO();
+                            Service service = serviceDAO.findByID(s);
+                        %>
                         <div class="aa-properties-details-img">
                             <img src="img/slider/overview%20(1).jpg" alt="img">
                             <img src="img/slider/living_1.jpg" alt="img">
@@ -113,32 +119,34 @@
                             <span class="aa-price"><%=p.getPropertie().getbPrice()%> - <%=p.getPropertie().getePrice()%> Tỷ</span>
                             <h4>Tổng Quan</h4>
                             <ul>
-                                <li>Loại Hình: <%=p.getPropertie().getType()%></li>
+                                <li>Loại Hình: <%=p.getPropertie().getType()%>
+                                </li>
                                 <li><%=p.getSoPhong().getNum_living()%> Phòng Khách</li>
                                 <li><%=p.getSoPhong().getNum_bed()%> Phòng Ngủ</li>
                                 <li><%=p.getSoPhong().getNum_kitchen()%> Nhà Bếp</li>
                                 <li><%=p.getSoPhong().getNum_living()%> Phòng Khách</li>
                             </ul>
                             <h4>Tiện Ích Của <%=p.getPropertie().getName()%>:</h4>
-<%--                            <ul>--%>
-<%--                                <% if (p.getService().isHoboi()) {%>--%>
-<%--                                <li>Hồ Bơi</li>--%>
-<%--                                <%}%>--%>
-<%--                                <% if (p.getService().isKhuvuichoi()) {%>--%>
-<%--                                <li>Khu Vui Chơi Trẻ Em</li>--%>
-<%--                                <%}%>--%>
-<%--                                <% if (p.getService().isGym()) {%>--%>
-<%--                                <li>Phòng Tập Gym</li>--%>
-<%--                                <%}%>--%>
-<%--                                <% if (p.getService().isPicnic()) {%>--%>
-<%--                                <li>Khu Picnic</li>--%>
-<%--                                <%}%>--%>
-<%--                                <% if (p.getService().isCongvien()) {%>--%>
-<%--                                <li>Công Viên</li>--%>
-<%--                                <%}%>--%>
-<%--                            </ul>--%>
+                            <ul>
+                                <% if (service.isHoboi()) {%>
+                                <li>Hồ Bơi</li>
+                                <%}%>
+                                <% if (service.isKhuvuichoi()) {%>
+                                <li>Khu Vui Chơi Trẻ Em</li>
+                                <%}%>
+                                <% if (service.isGym()) {%>
+                                <li>Phòng Tập Gym</li>
+                                <%}%>
+                                <% if (service.isPicnic()) {%>
+                                <li>Khu Picnic</li>
+                                <%}%>
+                                <% if (service.isCongvien()) {%>
+                                <li>Công Viên</li>
+                                <%}%>
+                            </ul>
                             <h4>Xem Bản Đồ</h4>
-                            <iframe src="<%=p.getMap()%>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="<%=p.getMap()%>" width="100%" height="450" style="border:0;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                         <%}%>
                         <!-- Properties social share -->
@@ -186,7 +194,34 @@
                                                    <span class="aa-price">
                                                      <%=p.getbPrice()%> - <%=p.getePrice()%>tỷ
                                                    </span>
-                                                    <a class="aa-secondary-btn" href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>">Xem Chi Tiết</a>
+                                                    <a class="aa-secondary-btn" href="properties-detail-eco.html">Xem
+                                                        Chi Tiết</a>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <article class="aa-properties-item">
+                                            <a class="aa-properties-item-img" href="#">
+                                                <img alt="img" src="img/item/living_5.jpg">
+                                            </a>
+                                            <div class="aa-tag for-sale">
+                                                For Sale
+                                            </div>
+                                            <div class="aa-properties-item-content">
+                                                <div class="aa-properties-about">
+                                                    <h3><a href="#">Mizuki Park</a></h3>
+                                                    <div class="b__main--rows">
+                                                        <p class="b__address">Đống Đa, Hà Nội</p>
+                                                        <label>Chung Cư</label>
+                                                    </div>
+                                                </div>
+                                                <div class="aa-properties-detial">
+                                                     <span class="aa-price">
+                                                       3,2 tỷ
+                                                     </span>
+                                                    <a class="aa-secondary-btn" href="properties-detail-mizuki.html">Xem
+                                                        Chi Tiết</a>
                                                 </div>
                                             </div>
                                         </article>

@@ -1,7 +1,6 @@
 package model;
 
 public class Service {
-    int id_service;
     int id_ctda;
     boolean hoboi;
     boolean khuvuichoi;
@@ -13,23 +12,13 @@ public class Service {
 
     }
 
-    public Service(int id_service, int id_ctda, boolean hoboi, boolean khuvuichoi, boolean picnic, boolean gym, boolean congvien) {
-        this.id_service = id_service;
+    public Service( int id_ctda, boolean hoboi, boolean khuvuichoi, boolean picnic, boolean gym, boolean congvien) {
         this.id_ctda = id_ctda;
         this.hoboi = hoboi;
         this.khuvuichoi = khuvuichoi;
         this.picnic = picnic;
         this.gym = gym;
         this.congvien = congvien;
-    }
-
-
-    public int getId_service() {
-        return id_service;
-    }
-
-    public void setId_service(int id_service) {
-        this.id_service = id_service;
     }
 
     public int getId_ctda() {

@@ -89,7 +89,8 @@
                     <div class="aa-top-slider-content">
                         <span class="aa-top-slider-catg"><%=p.getName()%></span>
                         <h2 class="aa-top-slider-title"><%=p.getArea()%>m<sup>2</sup></h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i><%=p.getAddress()%></p>
+                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i><%=p.getAddress()%>
+                        </p>
                         <span class="aa-top-slider-off"><%=p.getType()%></span>
                         <p class="aa-top-slider-price"><%=p.getbPrice()%> - <%=p.getePrice()%> Tỷ</p>
                         <!-- <a href="-detail-akari-city.html" class="aa-top-slider-btn">Xem Thêm<span class="fa fa-angle-double-right"></span></a> -->
@@ -111,89 +112,91 @@
             <div class="form" action="search" method="post">
                 <div class="aa-advance-search-top">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="aa-single-advance-search">
-                                <input name="txt" type="text" placeholder="Nhập dự án mà bạn muốn tìm kiếm">
+                        <form action="/loc-san-pham" method="post">
+                            <div class="col-md-6">
+                                <div class="aa-single-advance-search">
+                                    <input name="nameProp" type="text" placeholder="Nhập dự án mà bạn muốn tìm kiếm">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="aa-single-advance-search">
-                                <select>
-                                    <option value="0" selected>Khu Vực</option>
-                                    <option value="1">Hà Nội</option>
-                                    <option value="2">Hồ Chí Minh</option>
-                                    <option value="3">Bình Dương</option>
-                                    <option value="4">Hải Phòng</option>
-                                    <option value="5">Quảng Ninh</option>
-                                    <option value="6">Bà Rịa-Vũng Tàu</option>
-                                    <option value="7">An Giang</option>
-                                    <option value="8">Bình Phước</option>
-                                    <option value="9">Bình Định</option>
-                                    <option value="10">Cần Thơ</option>
-                                </select>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <select name="address">
+                                        <option value="0" selected>Khu Vực</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                        <option value="Bình Dương">Bình Dương</option>
+                                        <option value="Hải Phòng">Hải Phòng</option>
+                                        <option value="Quảng Ninh">Quảng Ninh</option>
+                                        <option value="Bà Rịa-Vũng Tàu">Bà Rịa-Vũng Tàu</option>
+                                        <option value="An Giang">An Giang</option>
+                                        <option value="Bình Phước">Bình Phước</option>
+                                        <option value="Bình Định">Bình Định</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="aa-single-advance-search">
-                                <select>
-                                    <option value="0" selected>Loại Hình</option>
-                                    <option value="1">Thông Tầng</option>
-                                    <option value="2">Áp Mái</option>
-                                    <option value="3">Thông Thường</option>
-                                    <option value="4">Văn Phòng</option>
-                                    <option value="5">Dịch Vụ</option>
-                                    <option value="6">Văn Phòng</option>
-                                    <option value="7">Sky Villa</option>
-                                </select>
+                            <%--                        <div class="col-md-2">--%>
+                            <%--                            <div class="aa-single-advance-search">--%>
+                            <%--                                <select name="type">--%>
+                            <%--                                    <option value="0" selected>Loại Hình</option>--%>
+                            <%--                                    <option value="Thông Tầng">Thông Tầng</option>--%>
+                            <%--                                    <option value="Áp Mái">Áp Mái</option>--%>
+                            <%--                                    <option value="Thông Thường">Thông Thường</option>--%>
+                            <%--                                    <option value="Văn Phòng">Văn Phòng</option>--%>
+                            <%--                                    <option value="Dịch Vụ">Dịch Vụ</option>--%>
+                            <%--                                    <option value="Văn Phòng">Văn Phòng</option>--%>
+                            <%--                                    <option value="Sky Villa">Sky Villa</option>--%>
+                            <%--                                </select>--%>
+                            <%--                            </div>--%>
+                            <%--                        </div>--%>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <select name="service">
+                                        <option value="0" selected>Dịch Vụ</option>
+                                        <option value="hoboi">Hồ Bơi</option>
+                                        <option value="khuvuichoi">Khu Vui Chơi</option>
+                                        <option value="gym">Phòng Gym</option>
+                                        <option value="picnic">Khu Picnic</option>
+                                        <option value="congvien">Công Viên</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="aa-single-advance-search">
-                                <select>
-                                    <option value="0" selected>Dịch Vụ</option>
-                                    <option value="1">Hồ Bơi</option>
-                                    <option value="2">Khu Vui Chơi</option>
-                                    <option value="3">Phòng Gym</option>
-                                    <option value="4">Khu Picnic</option>
-                                    <option value="5">Công Viên</option>
-                                </select>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <input class="aa-search-btn" type="submit" value="Tìm Kiếm">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="aa-single-advance-search">
-                                <input class="aa-search-btn" type="submit" value="Tìm Kiếm">
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="aa-advance-search-bottom">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="aa-single-filter-search">
-                                <span>Diện Tích (m<sup>2</sup>)</span>
-                                <span>Từ</span>
-                                <span id="skip-value-lower" class="example-val">1 Tỷ</span>
-                                <span>Đến</span>
-                                <span id="skip-value-upper" class="example-val">10 Tỷ</span>
-                                <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="aa-single-filter-search">
-                                <span>Giá (tỷ)</span>
-                                <span>Từ</span>
-                                <span id="skip-value-lower2" class="example-val">1 Tỷ</span>
-                                <span>Đến</span>
-                                <span id="skip-value-upper2" class="example-val">10 Tỷ</span>
-                                <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-                                </div>
+                    <div class="col-md-6">
+                        <div class="aa-single-filter-search">
+                            <span>Diện Tích (m<sup>2</sup>)</span>
+                            <span>Từ</span>
+                            <span id="skip-value-lower" class="example-val"></span>
+                            <span>Đến</span>
+                            <span id="skip-value-upper" class="example-val"></span>
+                            <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="aa-single-filter-search">
+                            <span>Giá (tỷ)</span>
+                            <span>Từ</span>
+                            <span id="skip-value-lower2" class="example-val">1 Tỷ</span>
+                            <span>Đến</span>
+                            <span id="skip-value-upper2" class="example-val">10 Tỷ</span>
+                            <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                            </div>
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 <!-- / Advance Search -->
@@ -209,93 +212,98 @@
 
             <div class="row">
                 <div class="col-md-12">
-                <% for (Propertie p : list1) { %>
-                <div class="col-md-4">
-                    <div class="aa-properties-content-body">
-                        <ul class="aa-properties-nav">
+                    <% for (Propertie p : list1) { %>
+                    <div class="col-md-4">
+                        <div class="aa-properties-content-body">
+                            <ul class="aa-properties-nav">
 
-                            <!-- 1 -->
-                            <li>
-                                <article class="aa-properties-item">
-                                    <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>" class="aa-properties-item-img">
-                                        <img src="<%= p.getImg() %>" alt="img">
-                                    </a>
-                                    <% if (p.isSoldOut()) { %>
-                                    <div class="aa-tag sold-out">Đã Bán</div>
-                                    <%} else { %>
-                                    <div class="aa-tag for-sale">Đang Bán</div>
-                                    <% } %>
+                                <!-- 1 -->
+                                <li>
+                                    <article class="aa-properties-item">
+                                        <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"
+                                           class="aa-properties-item-img">
+                                            <img src="<%= p.getImg() %>" alt="img">
+                                        </a>
+                                        <% if (p.isSoldOut()) { %>
+                                        <div class="aa-tag sold-out">Đã Bán</div>
+                                        <%} else { %>
+                                        <div class="aa-tag for-sale">Đang Bán</div>
+                                        <% } %>
 
-                                    <div class="aa-properties-item-content">
+                                        <div class="aa-properties-item-content">
 
-                                        <div class="aa-properties-about">
-                                            <h3><a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%= p.getName()%>
-                                            </a></h3>
-                                            <div class="b__main--rows">
-                                                <p class="b__address"><%=p.getAddress()%>
-                                                </p>
-                                                <label><%= p.getType()%>
-                                                </label>
+                                            <div class="aa-properties-about">
+                                                <h3>
+                                                    <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%= p.getName()%>
+                                                    </a></h3>
+                                                <div class="b__main--rows">
+                                                    <p class="b__address"><%=p.getAddress()%>
+                                                    </p>
+                                                    <label><%= p.getType()%>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="aa-properties-detial">
+                                                <span class="aa-price"><%= p.getbPrice()%> - <%=p.getePrice()%>Tỷ</span>
+                                                <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"
+                                                   class="aa-secondary-btn">Xem Chi
+                                                    Tiết</a>
                                             </div>
                                         </div>
-                                        <div class="aa-properties-detial">
-                                            <span class="aa-price"><%= p.getbPrice()%> - <%=p.getePrice()%>Tỷ</span>
-                                            <a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>" class="aa-secondary-btn">Xem Chi
-                                                Tiết</a>
-                                        </div>
-                                    </div>
-                                    <%
-                                        User user = (User) session.getAttribute("user");
-                                        if (!(user == null)) {
-                                            WishListDAO wishListDAO = new WishListDAO();
-                                            WishList w = new WishList();
-                                            w.setId_user(user.getId_User());
-                                            ArrayList<Propertie> list = wishListDAO.selectByUserId(w);
-                                            if (list.size() > 0) {
-                                                for (Propertie propertie : list) {
-                                    %>
-                                    <form action="/du-an-quan-tam" method="post">
-                                        <input type="hidden" name="action" value="them">
-                                        <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
-                                        <input type="hidden" name="url" value="<%=request.getRequestURI().toString()%>">
-                                        <button style="background-color: transparent; border: none" class="btn"
-                                                type="submit">
-                                                <%
+                                        <%
+                                            User user = (User) session.getAttribute("user");
+                                            if (!(user == null)) {
+                                                WishListDAO wishListDAO = new WishListDAO();
+                                                WishList w = new WishList();
+                                                w.setId_user(user.getId_User());
+                                                ArrayList<Propertie> list = wishListDAO.selectByUserId(w);
+                                                if (list.size() > 0) {
+                                                    for (Propertie propertie : list) {
+                                        %>
+                                        <form action="/du-an-quan-tam" method="post">
+                                            <input type="hidden" name="action" value="them">
+                                            <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                            <input type="hidden" name="url"
+                                                   value="<%=request.getRequestURI().toString()%>">
+                                            <button style="background-color: transparent; border: none" class="btn"
+                                                    type="submit">
+                                                    <%
                                                 if (p.getId_duan() == propertie.getId_duan()) {
                                             %>
-                                            <i class="fa-regular fa-heart fa-solid"></i>
-                                                <%
+                                                <i class="fa-regular fa-heart fa-solid"></i>
+                                                    <%
                                             } else {
                                             %>
-                                            <i class="fa-regular fa-heart"></i>
-                                                <%
+                                                <i class="fa-regular fa-heart"></i>
+                                                    <%
                                                 }
                                             %>
-                                    </form>
-                                    <%
-                                        }
-                                    } else {
-                                    %>
-                                    <form action="/du-an-quan-tam" method="post">
-                                        <input type="hidden" name="action" value="them">
-                                        <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
-                                        <input type="hidden" name="url" value="<%=request.getRequestURI().toString()%>">
-                                        <button style="background-color: transparent; border: none" class="btn"
-                                                type="submit">
-                                            <i class="fa-regular fa-heart"></i>
-
-                                    </form>
-                                    <%
+                                        </form>
+                                        <%
                                             }
-                                        }
-                                    %>
+                                        } else {
+                                        %>
+                                        <form action="/du-an-quan-tam" method="post">
+                                            <input type="hidden" name="action" value="them">
+                                            <input type="hidden" name="id_duan" value="<%=p.getId_duan()%>">
+                                            <input type="hidden" name="url"
+                                                   value="<%=request.getRequestURI().toString()%>">
+                                            <button style="background-color: transparent; border: none" class="btn"
+                                                    type="submit">
+                                                <i class="fa-regular fa-heart"></i>
 
-                                </article>
-                            </li>
-                        </ul>
+                                        </form>
+                                        <%
+                                                }
+                                            }
+                                        %>
+
+                                    </article>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <%}%>
+                    <%}%>
                 </div>
             </div>
         </div>
@@ -411,28 +419,31 @@
                             trong lĩnh vực.</p>
                     </div>
                     <div class="aa-latest-blog-content">
-                            <!-- start single blog -->
+                        <!-- start single blog -->
                         <% for (Blog b : list) {%>
-                            <div class="col-md-4">
+                        <div class="col-md-4">
 
-                                <article class="aa-blog-single">
-                                    <figure class="aa-blog-img">
-                                        <a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><img src="<%=b.getImg()%>" alt="img"></a>
+                            <article class="aa-blog-single">
+                                <figure class="aa-blog-img">
+                                    <a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><img src="<%=b.getImg()%>"
+                                                                                               alt="img"></a>
 
-                                        <span class="aa-date-tag"><%=b.getDate_create()%></span>
-                                    </figure>
-                                    <div class="aa-blog-single-content">
-                                        <h3><a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><%=b.getTitle()%></a></h3>
-                                        <p><%=b.getSubtitle()%></p>
+                                    <span class="aa-date-tag"><%=b.getDate_create()%></span>
+                                </figure>
+                                <div class="aa-blog-single-content">
+                                    <h3><a href="blog-detail.jsp?id_blog=<%=b.getId_blog()%>"><%=b.getTitle()%>
+                                    </a></h3>
+                                    <p><%=b.getSubtitle()%>
+                                    </p>
 
-                                        <div class="aa-blog-single-bottom">
-                                            <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-<%--                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>--%>
-                                        </div>
+                                    <div class="aa-blog-single-bottom">
+                                        <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
+                                        <%--                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>--%>
                                     </div>
+                                </div>
 
-                                </article>
-                            </div>
+                            </article>
+                        </div>
                         <%}%>
                         <!-- start single blog -->
                     </div>

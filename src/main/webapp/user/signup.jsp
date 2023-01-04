@@ -78,7 +78,7 @@
                             </div>
 
                         </div>
-                        <form action="../nguoi-dung" class="contacform" method="post" id="signupform">
+                        <form action="../nguoi-dung" class="contacform" method="post" id="signupform" onsubmit="return checkSignUp();">
                             <input type="hidden" name="action" value="dang-ki">
                             <div class="aa-single-field">
                                 <label for="name">Tên đăng nhập: <span class="required">*</span></label>
