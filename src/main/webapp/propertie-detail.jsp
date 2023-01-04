@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="service.PropertieService" %>
 <%@ page import="model.Properties_detail" %>
+<%@ page import="model.Propertie" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -64,6 +65,11 @@
 <jsp:include page="header.jsp" />
 <%--<!-- End header and menu section -->--%>
 
+<%
+    PropertieService pds = new PropertieService();
+    List<Properties_detail> list2 = pds.getListPropertieDetail(request.getParameter("id_duan"));
+%>
+
 <!-- Start Proerty header  -->
 <section id="aa-property-header">
     <div class="container">
@@ -74,7 +80,9 @@
                     <ol class="breadcrumb">
                         <li><a href="index.jsp">Trang Chủ</a></li>
                         <li class="active"><a href="properties.jsp">Dự Án</a></li>
-                        <li class="active">Akara City</li>
+                        <% for (Properties_detail p2 : list2) {%>
+                        <li class="active"><%=p2.getPropertie().getName()%></li>
+                        <%}%>
                     </ol>
                 </div>
             </div>
@@ -82,10 +90,6 @@
     </div>
 </section>
 <!-- End Proerty header  -->
-<%
-    PropertieService pds = new PropertieService();
-    List<Properties_detail> list2 = pds.getListPropertieDetail(request.getParameter("id_duan"));
-%>
 
 <!-- Start Properties  -->
 <section id="aa-properties">
@@ -105,6 +109,7 @@
                         </div>
                         <div class="aa-properties-info">
                             <h2><%=p.getPropertie().getName()%></h2>
+                            <button class="btn-contact" ><a href="form.jsp">Liên hệ xem dự án</a></button>
                             <span class="aa-price"><%=p.getPropertie().getbPrice()%> - <%=p.getPropertie().getePrice()%> Tỷ</span>
                             <h4>Tổng Quan</h4>
                             <ul>
@@ -147,6 +152,10 @@
                             </ul>
                         </div>
                         <!-- Nearby properties -->
+                        <!-- Nearby properties -->
+                        <%
+                            List<Propertie> list3 = pds.getListDifferentProduct();
+                        %>
                         <div class="aa-nearby-properties">
                             <div class="aa-title">
                                 <h2>Dự Án Khác</h2>
@@ -154,56 +163,35 @@
                             </div>
                             <div class="aa-nearby-properties-area">
                                 <div class="row">
+                                    <% for (Propertie p : list3) {%>
                                     <div class="col-md-6">
                                         <article class="aa-properties-item">
-                                            <a class="aa-properties-item-img" href="#">
-                                                <img alt="img" src="img/item/living_7.jpg">
+                                            <a class="aa-properties-item-img" href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>">
+                                                <img alt="img" src="<%=p.getImg()%>">
                                             </a>
-                                            <div class="aa-tag for-sale">
-                                                For Sale
-                                            </div>
+                                            <% if (p.isSoldOut()) { %>
+                                            <div class="aa-tag sold-out">Đã Bán</div>
+                                            <%} else { %>
+                                            <div class="aa-tag for-sale">Đang Bán</div>
+                                            <% } %>
                                             <div class="aa-properties-item-content">
                                                 <div class="aa-properties-about">
-                                                    <h3><a href="#">Eco Dream</a></h3>
+                                                    <h3><a href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>"><%=p.getName()%></a></h3>
                                                     <div class="b__main--rows">
-                                                        <p class="b__address">Thanh Trì, Hà Nội</p>
-                                                        <label>Chung Cư</label>
+                                                        <p class="b__address"><%=p.getAddress()%></p>
+                                                        <label><%=p.getType()%></label>
                                                     </div>
                                                 </div>
                                                 <div class="aa-properties-detial">
                                                    <span class="aa-price">
-                                                     3 tỷ
+                                                     <%=p.getbPrice()%> - <%=p.getePrice()%>tỷ
                                                    </span>
-                                                    <a class="aa-secondary-btn" href="properties-detail-eco.html">Xem Chi Tiết</a>
+                                                    <a class="aa-secondary-btn" href="propertie-detail.jsp?id_duan=<%=p.getId_duan()%>">Xem Chi Tiết</a>
                                                 </div>
                                             </div>
                                         </article>
                                     </div>
-                                    <div class="col-md-6">
-                                        <article class="aa-properties-item">
-                                            <a class="aa-properties-item-img" href="#">
-                                                <img alt="img" src="img/item/living_5.jpg">
-                                            </a>
-                                            <div class="aa-tag for-sale">
-                                                For Sale
-                                            </div>
-                                            <div class="aa-properties-item-content">
-                                                <div class="aa-properties-about">
-                                                    <h3><a href="#">Mizuki Park</a></h3>
-                                                    <div class="b__main--rows">
-                                                        <p class="b__address">Đống Đa, Hà Nội</p>
-                                                        <label>Chung Cư</label>
-                                                    </div>
-                                                </div>
-                                                <div class="aa-properties-detial">
-                                                     <span class="aa-price">
-                                                       3,2 tỷ
-                                                     </span>
-                                                    <a class="aa-secondary-btn" href="properties-detail-mizuki.html">Xem Chi Tiết</a>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
@@ -283,46 +271,27 @@
                             </div>
                         </form>
                     </div>
+
+                    <%
+                        List<Propertie> list4 = pds.getListHighLight();
+                    %>
                     <!-- Start Single properties sidebar -->
                     <div class="aa-properties-single-sidebar">
                         <h3>Dự Án Phổ Biến</h3>
+                        <%for (Propertie pt : list4) {%>
                         <div class="media">
                             <div class="media-left">
-                                <a href="properties-detail-metro.html">
-                                    <img class="media-object" src="img/slider/overview%20(10).jpg" alt="img">
+                                <a href="propertie-detail.jsp?id_duan=<%=pt.getId_duan()%>">
+                                    <img class="media-object" src="<%=pt.getImg()%>" alt="img">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="properties-detail-metro.html">Metro Star</a></h4>
-                                <p>Quận Bình Thạnh, TP.HCM</p>
-                                <span>1,5 tỷ</span>
+                                <h4 class="media-heading"><a href="propertie-detail.jsp?id_duan=<%=pt.getId_duan()%>"><%=pt.getName()%></a></h4>
+                                <p><%=pt.getAddress()%></p>
+                                <span><%=pt.getbPrice()%> - <%=pt.getePrice()%></span>
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="properties-detail-lavita.html">
-                                    <img class="media-object" src="img/slider/overview%20(8).jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="properties-detail-lavita.html">Lavita Charm</a></h4>
-                                <p>Quận 7, TP.HCM</p>
-                                <span>4,5 tỷ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="properties-detail-sunshine-city.html">
-                                    <img class="media-object" src="img/slider/overview%20(3).jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="properties-detail-sunshine-city.html">Sunshine
-                                    City</a></h4>
-                                <p>Linh Trung, Thủ Đức</p>
-                                <span>2,5 tỷ</span>
-                            </div>
-                        </div>
+                        <%}%>
                     </div>
                 </aside>
             </div>
