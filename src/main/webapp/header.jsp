@@ -42,9 +42,6 @@
                                         class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="wishlist.jsp">Dự án quan tâm</a></li>
-                                            <li><a href="propertie-detail.jsp">PROPERTIES DETAIL</a></li>
-                                            <li><a href="properties.jsp">PROPERTIES</a></li>
-                                            <li><a href="propertie-detail.jsp">PROPERTIES DETAIL</a></li>
                                             <li><a href="user/changePass.jsp">Đổi mật khẩu</a></li>
                                             <li><a href="nguoi-dung?action=dang-xuat">Đăng xuất</a></li>
                                         </ul>
