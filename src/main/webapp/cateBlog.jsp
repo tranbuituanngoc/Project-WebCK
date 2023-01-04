@@ -86,6 +86,7 @@
 <%
     BlogService bs = new BlogService();
     List<Blog> list1 = bs.getListBlogByCate(request.getParameter("id_blog"));
+    List<Blog> list2 = bs.getListBlog();
 %>
 
 <!-- Start Blog  -->
@@ -133,41 +134,20 @@
                                 </div>
                                 <!-- Start single sidebar -->
                                 <div class="aa-blog-sidebar-single">
-                                    <h3>Thẻ</h3>
-                                    <div class="tag-cloud">
-                                        <a href="#">Bất động sản</a>
-                                        <a href="#">Đầu tư</a>
-                                        <a href="#">Địa ốc</a>
-                                        <a href="#">Căn hộ cao cấp</a>
-                                        <a href="#">Căn hộ thông thường</a>
-                                    </div>
-                                </div>
-                                <!-- Start single sidebar -->
-                                <div class="aa-blog-sidebar-single">
                                     <h3>Bài viết mới nhất</h3>
                                     <div class="aa-blog-recent-post">
+                                        <%for (Blog bl : list2) {%>
                                         <div class="media">
                                             <div class="media-left">
-                                                <a href="#">
-                                                    <img alt="img" src="img/blog1 (1).jpg" class="media-object">
+                                                <a href="blog-detail.jsp?id_blog=<%=bl.getId_blog()%>">
+                                                    <img alt="img" src="<%=bl.getImg()%>" class="media-object">
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <h5 class="media-heading"><a href="blog-detail-1.html">Sức hút của thị trường BĐS Duy Tiên và cơ hội cho giới địa ốc</a></h5>
-                                                <!-- <p>Hội tụ những tiềm năng về vị trí, hạ tầng, quy hoạch; Duy Tiên đang trở thành “ngôi sao sáng” trên bản đồ thị trường bất động sản, thu hút một lượng lớn các nhà đầu tư.</p>                 -->
-                                                <!-- <span>15 April, 16</span> -->
+                                                <h5 class="media-heading"><a href="blog-detail.jsp?id_blog=<%=bl.getId_blog()%>"><%=bl.getTitle()%></a></h5>
                                             </div>
                                         </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img alt="img" src="img/blog1 (2).png" class="media-object">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading"><a href="blog-detail-2.html">Tận hưởng “bữa tiệc thị giác” với tầm view triệu đô ngay tại trung tâm Hà Nội</a></h5>
-                                            </div>
-                                        </div>
+                                        <%}%>
                                     </div>
                                 </div>
                                 <!-- Start single sidebar -->
