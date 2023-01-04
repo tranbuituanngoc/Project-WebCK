@@ -933,6 +933,18 @@
             text-align: left;
             margin: 7px 0 8px 0;
         }
+
+        .aa-properties-content .aa-properties-details .aa-properties-info .btn-contact {
+            float:right;
+            border: none;
+            padding: 8px;
+            margin-top: -30px;
+            background-color: #59abe3;
+        }
+
+        .aa-properties-content .aa-properties-details .aa-properties-info a {
+           color: white;
+        }
         
         .aa-properties-item .aa-properties-item-content .aa-properties-info span {
             margin: 0px 5px;
@@ -2726,6 +2738,10 @@
             margin-top: 20px;
             width: 100%;
             font-size: 14pt;
+        }
+
+        #aa-contact .aa-contact-area .aa-contact-bottom .aa-contact-form .comment-form-author input{
+            margin-top: 10px;
         }
         
         #aa-contact .aa-contact-area .aa-contact-bottom .aa-contact-form .contactform {

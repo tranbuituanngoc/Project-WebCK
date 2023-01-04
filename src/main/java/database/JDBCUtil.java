@@ -17,7 +17,7 @@ public class JDBCUtil {
             DriverManager.registerDriver(driver);
 
             //link
-            String urlString = "jdbc:mysql://localhost:3306/wealthuring";
+            String urlString = "jdbc:mysql://localhost:3306/abc";
             //tên database
             String usernameString = "root";
             //mật khẩu database
